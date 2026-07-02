@@ -27,6 +27,7 @@ const MOODS: Record<string, { bg: any, a: any, b: any }> = {
   technologies: { bg: new (THREE as any).Color('#0a1224'), a: new (THREE as any).Color('#1DC3F3'), b: new (THREE as any).Color('#9a7bff') },
   contact:      { bg: new (THREE as any).Color('#05080f'), a: new (THREE as any).Color('#F300A6'), b: new (THREE as any).Color('#1DC3F3') },
   about:        { bg: new (THREE as any).Color('#0a0518'), a: new (THREE as any).Color('#F300A6'), b: new (THREE as any).Color('#9a7bff') },
+  'case-studies': { bg: new (THREE as any).Color('#050b14'), a: new (THREE as any).Color('#9a7bff'), b: new (THREE as any).Color('#1DC3F3') },
 };
 const mood = { current: 'signal', a: MOODS.signal.a.clone(), b: MOODS.signal.b.clone(), bg: MOODS.signal.bg.clone() };
 
@@ -35,7 +36,12 @@ export function initCinematic() {
   const IS_MOBILE = window.innerWidth < 720;
 
   gsap.registerPlugin(ScrollTrigger);
-  ScrollTrigger.getAll().forEach((t: any) => t.kill());
+  ScrollTrigger.getAll().forEach((t: any) => {
+    if ((t.vars?.id && typeof t.vars.id === 'string' && t.vars.id.startsWith('react-')) || (t.id && t.id.startsWith('react-'))) {
+      return;
+    }
+    t.kill();
+  });
   ScrollTrigger.refresh();
 
   const canvas = document.getElementById('webgl') as HTMLCanvasElement;
@@ -543,23 +549,7 @@ export function initCinematic() {
     if (e.target === netStage || e.target === netSvg) netModal?.classList.remove('show');
   });
 
-  /* 5. PRODUCT ENGINE */
-  const t1 = document.getElementById('engineTrack1');
-  const t2 = document.getElementById('engineTrack2');
-  if (!IS_MOBILE && t1 && t2) {
-    const pinDist = () => t1.scrollWidth - window.innerWidth + 200;
-    const eng = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#engine', start: 'top top', end: () => '+=' + Math.max(800, pinDist()),
-        pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true
-      }
-    });
-    eng.to(t1, { x: () => -(t1.scrollWidth - window.innerWidth + 100), ease: 'none' }, 0);
-    eng.to(t2, { x: () => (t2.scrollWidth - window.innerWidth + 100) * 0.6 - (t2.scrollWidth - window.innerWidth + 100), ease: 'none' }, 0);
-  } else if (t1 && t2) {
-    t1.style.overflowX = 'auto';
-    t2.style.overflowX = 'auto';
-  }
+
 
   /* 6. AI WORKFLOW */
   const steps = Array.from(document.querySelectorAll('.pipe-step'));
@@ -578,6 +568,7 @@ export function initCinematic() {
 
     ScrollTrigger.create({
       trigger: '#ai', start: 'top top', end: '+=2200', pin: true, scrub: 0.6,
+      refreshPriority: 2,
       onUpdate: self => {
         const p = self.progress;
         if (pipeProgress) pipeProgress.style.width = (p * 100) + '%';
@@ -666,6 +657,8 @@ export function initCinematic() {
       scrollTrigger: { trigger: '#testimonials', start: 'top 70%' }
     }
   );
+
+
 
   gsap.utils.toArray('.section h2.display, .section .lede, .section .label').forEach((el: any) => {
     if (el.closest('#signal')) return;

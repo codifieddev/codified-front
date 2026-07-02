@@ -6,6 +6,7 @@ import { useAppSelector } from '@/redux/hooks';
 
 export default function CinematicInit() {
   const currentPages = useAppSelector((state) => state.pages.currentPages);
+  const isAllPageFetched = useAppSelector((state) => state.pages.isAllPageFetched);
   const initializedSlug = useRef<string | null>(null);
 
   useEffect(() => {
@@ -17,12 +18,12 @@ export default function CinematicInit() {
           initCinematic();
         }, 150); // Small delay to ensure React has fully committed the DOM
       }
-    } else if (!currentPages && initializedSlug.current !== 'static') {
+    } else if (!currentPages && isAllPageFetched && initializedSlug.current !== 'static') {
       // In case there is no Redux state (static pages), still try to initialize
       initializedSlug.current = 'static';
       initCinematic();
     }
-  }, [currentPages]);
+  }, [currentPages, isAllPageFetched]);
 
   return null;
 }

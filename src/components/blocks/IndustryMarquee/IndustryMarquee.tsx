@@ -1,5 +1,9 @@
 'use client';
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import EditableText from '@/components/shared/EditableText';
 import { saveField } from '@/lib/editorUtils';
@@ -110,6 +114,63 @@ export default function Industries() {
     return currentPages.content?.find((s: any) => s?.adminTitle === 'Industries' || s?.adminTitle === 'Industry Marquee');
   }, [currentPages]);
 
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      const indTrack = document.getElementById('industryTrack');
+      const indCards = Array.from(document.querySelectorAll('#industryTrack .card-wrapper'));
+      const indProgress = document.getElementById('industryProgress');
+      const IS_MOBILE = window.innerWidth < 720;
+
+      if (indTrack && !IS_MOBILE) {
+        const getScrollAmount = () => {
+          return Math.max(0, indTrack.scrollWidth - window.innerWidth + (window.innerWidth * 0.12));
+        };
+
+        const indTl = gsap.timeline({
+          scrollTrigger: {
+            id: 'react-industry-marquee',
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: () => `+=${indCards.length * 500}`, // Extended scroll distance to give time to read
+            pin: true,
+            scrub: 0.6,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            refreshPriority: 3,
+            onUpdate: self => {
+              const p = self.progress;
+              if (indProgress) indProgress.style.width = (p * 100) + '%';
+              
+              const activeIndex = Math.min(indCards.length - 1, Math.floor(p * (indCards.length + 0.4)));
+              indCards.forEach((card, idx) => {
+                if (idx === activeIndex) {
+                  card.classList.add('active');
+                  card.classList.remove('done');
+                } else if (idx < activeIndex) {
+                  card.classList.add('done');
+                  card.classList.remove('active');
+                } else {
+                  card.classList.remove('active', 'done');
+                }
+              });
+            }
+          }
+        });
+
+        indTl.to(indTrack, {
+          x: () => -getScrollAmount(),
+          ease: 'none'
+        }, 0);
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [section]);
+
   if (!section) return null;
 
   const p = section.props;
@@ -117,9 +178,9 @@ export default function Industries() {
   const handle = (fieldPath: string) => (value: string) => saveField(dispatch, currentPages, section.id, fieldPath, value);
 
   return (
-    <section className="section" id="engine" data-mood="engine" data-annotate-id={`${currentPages?.slug || 'home'}-industries-section`}>
-      <div className="inner" style={{ maxWidth: 'none' }}>
-        <div className="head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '40px' }}>
+    <section ref={sectionRef} className="section" id="engine" data-mood="engine" data-annotate-id={`${currentPages?.slug || 'home'}-industries-section`} style={{ padding: '80px 0', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div className="inner" style={{ maxWidth: 'none', padding: '0 6vw', width: '100%' }}>
+        <div className="head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '40px', marginBottom: '40px' }}>
           <div style={{ maxWidth: '900px' }}>
             <span className="label"><span className="num">{p.label?.en?.split('·')[0]}·</span> <EditableText value={(p.label?.en?.split('·')[1] || '').trim()} isEditable={isEditable} onSave={(val) => handle('props.label.en')(`${(p.label?.en?.split('·')[0] || '').trim()} · ${val}`)} tag="span" /></span>
             <EditableText
@@ -136,45 +197,29 @@ export default function Industries() {
               onSave={handle('props.description.en')}
               className="lede"
               tag="p"
+              style={{ margin: 0 }}
             />
           </div>
-          <div className="status-bar">
-            {p.metaItems?.map((item: any, i: number) => (
-              <span key={i} className={`pill ${item.type !== 'default' ? item.type : ''}`}>
-                <i /> <EditableText value={item.text?.en || ''} isEditable={isEditable} onSave={handle(`props.metaItems.${i}.text.en`)} tag="span" />
-              </span>
-            ))}
+          <div className="ind-progress-container" style={{ width: '200px', height: '2px', background: 'rgba(255,255,255,0.07)', position: 'relative', marginBottom: '16px', display: 'none' }}>
+            <div id="industryProgress" style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: '0%', background: 'linear-gradient(90deg, var(--cyan), var(--magenta))', transition: 'width 0.1s ease', boxShadow: '0 0 8px var(--cyan)' }} />
           </div>
         </div>
+      </div>
 
-        <div className="engine-track-wrap overflow-hidden relative" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
-          {/* Row 1 */}
-          <div className="flex animate-marquee hover:[animation-play-state:paused] w-max" style={{ animationDuration: '40s' }}>
-            <div className="flex gap-6 pr-6 shrink-0">
-              {content.map((c: any, i: number) => (
-                <IndustryCard key={`r1-1-${i}`} c={c} isEditable={isEditable} onSave={handle} contentIdx={i} />
-              ))}
+      <div className="industry-track-wrap" style={{ overflow: 'hidden', padding: '20px 6vw', width: '100%' }}>
+        <div 
+          id="industryTrack" 
+          className="flex gap-6"
+          style={{ 
+            width: 'max-content',
+            willChange: 'transform'
+          }}
+        >
+          {content.map((c: any, i: number) => (
+            <div key={`ind-${i}`} className="card-wrapper shrink-0" style={{ width: '280px' }}>
+              <IndustryCard c={c} isEditable={isEditable} onSave={handle} contentIdx={i} />
             </div>
-            <div className="flex gap-6 pr-6 shrink-0" aria-hidden="true">
-              {content.map((c: any, i: number) => (
-                <IndustryCard key={`r1-2-${i}`} c={c} isEditable={isEditable} onSave={handle} contentIdx={i} />
-              ))}
-            </div>
-          </div>
-          
-          {/* Row 2 */}
-          <div className="flex animate-marquee hover:[animation-play-state:paused] w-max mt-6" style={{ animationDuration: '50s', animationDirection: 'reverse' }}>
-            <div className="flex gap-6 pr-6 shrink-0">
-              {content.slice().reverse().map((c: any, i: number) => (
-                <IndustryCard key={`r2-1-${i}`} c={c} isEditable={isEditable} onSave={handle} contentIdx={content.indexOf(c)} />
-              ))}
-            </div>
-            <div className="flex gap-6 pr-6 shrink-0" aria-hidden="true">
-              {content.slice().reverse().map((c: any, i: number) => (
-                <IndustryCard key={`r2-2-${i}`} c={c} isEditable={isEditable} onSave={handle} contentIdx={content.indexOf(c)} />
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -712,6 +712,181 @@
           }
         }
       ]
+    },
+    {
+      "id": "case-studies-section",
+      "type": "section",
+      "layout": "grid",
+      "adminTitle": "Case Studies",
+      "props": {
+        "label": {
+          "en": "08 · Case Studies",
+          "hi": "08 · केस स्टडीज़"
+        },
+        "heading": {
+          "en": "Selected <span class=\"grad-text\">Case Studies</span>",
+          "hi": "चुनिंदा <span class=\"grad-text\">केस स्टडीज़</span>"
+        },
+        "description": {
+          "en": "Real-world examples of how we help our clients build and scale their products.",
+          "hi": "वास्तविक दुनिया के उदाहरण कि कैसे हम अपने ग्राहकों को उनके उत्पादों को बनाने और स्केल करने में मदद करते हैं।"
+        }
+      },
+      "content": [
+        {
+          "id": "cs-1",
+          "type": "item",
+          "props": {
+            "tag": "Tourism & Travel",
+            "title": {
+              "en": "MyRent: Building Clarity at Scale",
+              "hi": "MyRent: बड़े पैमाने पर स्पष्टता का निर्माण"
+            },
+            "desc": {
+              "en": "How MyRent transformed a complex property management platform into a growth system through UX, SEO, and content strategy.",
+              "hi": "कैसे MyRent ने UX, SEO और सामग्री रणनीति के माध्यम से एक जटिल संपत्ति प्रबंधन मंच को विकास प्रणाली में बदल दिया।"
+            },
+            "image": "/images/services/my-rent-case-study.png",
+            "href": "/who-we-create-for/myrent"
+          }
+        },
+        {
+          "id": "cs-2",
+          "type": "item",
+          "props": {
+            "tag": "Academic Tech",
+            "title": {
+              "en": "Connecting Scholars and Institutions Globally",
+              "hi": "वैश्विक स्तर पर विद्वानों और संस्थानों को जोड़ना"
+            },
+            "desc": {
+              "en": "A transformative digital platform for Acadivate, designed to foster research breakthroughs and strategic global collaborations.",
+              "hi": "Acadivate के लिए एक परिवर्तनकारी डिजिटल प्लेटफॉर्म, जिसे अनुसंधान सफलताओं और रणनीतिक वैश्विक सहयोग को बढ़ावा देने के लिए डिज़ाइन किया गया है।"
+            },
+            "image": "https://acadivate.com/assets/Image/research-innovation.jpg",
+            "href": "/who-we-create-for/acadivate"
+          }
+        },
+        {
+          "id": "cs-3",
+          "type": "item",
+          "props": {
+            "tag": "Tactical E-Commerce",
+            "title": {
+              "en": "Allied Surplus: High-Performance Tactical Store",
+              "hi": "Allied Surplus: उच्च प्रदर्शन सामरिक स्टोर"
+            },
+            "desc": {
+              "en": "A complete e-commerce overhaul for one of the US market's most established military surplus retailers - structured for scale and growth.",
+              "hi": "अमेरिकी बाजार के सबसे स्थापित सैन्य अधिशेष खुदरा विक्रेताओं में से एक के लिए एक पूर्ण ई-कॉमर्स ओवरहाल - पैमाने और विकास के लिए संरचित।"
+            },
+            "image": "/images/services/slide4.webp",
+            "href": "/who-we-create-for/allied-surplus"
+          }
+        },
+        {
+          "id": "cs-4",
+          "type": "item",
+          "props": {
+            "tag": "Boutique Brands",
+            "title": {
+              "en": "From Commodity to Premium: Castania Brand Strategy",
+              "hi": "कमोडिटी से प्रीमियम तक: कास्टानिया ब्रांड रणनीति"
+            },
+            "desc": {
+              "en": "We created the brand name, positioning, and narrative, transforming a raw product into a brand with meaning, personality, and purpose.",
+              "hi": "हमने ब्रांड का नाम, स्थिति और कथा बनाई, एक कच्चे उत्पाद को अर्थ, व्यक्तित्व और उद्देश्य वाले ब्रांड में बदल दिया।"
+            },
+            "image": "/images/services/castania-hero-img.png",
+            "href": "/who-we-create-for/castania"
+          }
+        },
+        {
+          "id": "cs-5",
+          "type": "item",
+          "props": {
+            "tag": "Creative & Video",
+            "title": {
+              "en": "Expo Life: Far Beyond Visual Direction",
+              "hi": "एक्सपो लाइफ: विजुअल डायरेक्शन से कहीं आगे"
+            },
+            "desc": {
+              "en": "Packaging visual direction, storyboard, and full creative video direction developed and produced to elevate the brand's identity.",
+              "hi": "ब्रांड की पहचान बढ़ाने के लिए पैकेजिंग विजुअल डायरेक्शन, स्टोरीबोर्ड और पूर्ण रचनात्मक वीडियो डायरेक्शन विकसित और निर्मित किया गया।"
+            },
+            "image": "https://www.hrescic.com/assets/Image/Rectangle%201796.png",
+            "href": "/who-we-create-for/expo-life-far-beyond"
+          }
+        },
+        {
+          "id": "cs-6",
+          "type": "item",
+          "props": {
+            "tag": "Craft Branding",
+            "title": {
+              "en": "Karlo Ban: When Craft Meets Collaboration",
+              "hi": "कार्लो बान: जब शिल्प सहयोग से मिलता है"
+            },
+            "desc": {
+              "en": "A branding, web UX/UI, and AI video postproduction partnership forged in trust and precision for Karlo Ban's handmade blades.",
+              "hi": "कार्लो बान के हस्तनिर्मित ब्लेड के लिए विश्वास और सटीकता में बनाई गई एक ब्रांडिंग, वेब UX/UI और AI वीडियो पोस्ट-प्रोडक्शन साझेदारी।"
+            },
+            "image": "/images/services/karloban-img.png",
+            "href": "/who-we-create-for/karlo-ban"
+          }
+        },
+        {
+          "id": "cs-7",
+          "type": "item",
+          "props": {
+            "tag": "Premium Furniture",
+            "title": {
+              "en": "NestCraft: Sculpting Premium Living",
+              "hi": "नेस्टक्राफ्ट: प्रीमियम लिविंग को आकार देना"
+            },
+            "desc": {
+              "en": "From a Jaipur workshop to a nationally recognized premium furniture brand - built on visual storytelling and D2C e-commerce.",
+              "hi": "जयपुर कार्यशाला से लेकर राष्ट्रीय स्तर पर मान्यता प्राप्त प्रीमियम फर्नीचर ब्रांड तक - विजुअल स्टोरीटेलिंग और D2C ई-कॉमर्स पर निर्मित।"
+            },
+            "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=900",
+            "href": "/who-we-create-for/nestcraft-living"
+          }
+        },
+        {
+          "id": "cs-8",
+          "type": "item",
+          "props": {
+            "tag": "Pet Care E-Comm",
+            "title": {
+              "en": "PeeKeeper: Revitalizing the Diaper Experience",
+              "hi": "PeeKeeper: डायपर अनुभव को पुनर्जीवित करना"
+            },
+            "desc": {
+              "en": "A complete digital overhaul for the patented escape-proof dog diaper, combining empathetic branding with high-converting e-commerce.",
+              "hi": "पेटेंट एस्केप-प्रूफ डॉग डायपर के लिए एक पूर्ण डिजिटल ओवरहाल, सहानुभूतिपूर्ण ब्रांडिंग को उच्च-परिवर्तित ई-कॉमर्स के साथ जोड़ता है।"
+            },
+            "image": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=600",
+            "href": "/who-we-create-for/peekeeper"
+          }
+        },
+        {
+          "id": "cs-9",
+          "type": "item",
+          "props": {
+            "tag": "Agri Tech",
+            "title": {
+              "en": "SABL: Strengthening Agriculture-based Livelihoods",
+              "hi": "SABL: कृषि आधारित आजीविका को मजबूत करना"
+            },
+            "desc": {
+              "en": "A comprehensive digital transformation creating a platform that bridges modern agricultural science and grassroots farming.",
+              "hi": "एक व्यापक डिजिटल परिवर्तन जो आधुनिक कृषि विज्ञान और जमीनी स्तर की खेती को जोड़ने वाला एक मंच बनाता है।"
+            },
+            "image": "/images/services/improve.png",
+            "href": "/who-we-create-for/sabl"
+          }
+        }
+      ]
     }
   ]
 }

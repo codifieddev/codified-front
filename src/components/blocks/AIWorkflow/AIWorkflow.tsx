@@ -38,6 +38,7 @@ export default function AIWorkflow() {
           width: '100%',
           ease: 'none',
           scrollTrigger: {
+            id: 'react-ai-workflow-progress',
             trigger: '#pipeline',
             start: 'top 75%',
             end: 'bottom 25%',

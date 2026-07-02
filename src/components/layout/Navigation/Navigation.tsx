@@ -157,6 +157,7 @@ export default function Navigation() {
             <Link href="/industries" className={activeMega === 'industries' ? 'active' : ''}>Industries</Link>
           </div>
           <div><Link href="/technologies">Technologies</Link></div>
+          <div><Link href="/case-studies">Case Studies</Link></div>
           <div><Link href="/contact">Contact</Link></div>
         </div>
 
@@ -335,6 +336,7 @@ export default function Navigation() {
         </div>
 
         <Link href="/technologies" onClick={closeMenu}>Technologies</Link>
+        <Link href="/case-studies" onClick={closeMenu}>Case Studies</Link>
         <Link href="/contact" onClick={closeMenu}>Contact</Link>
         <Link href="/contact" className="drawer-cta" onClick={closeMenu}>Free Consultation →</Link>
       </div>
