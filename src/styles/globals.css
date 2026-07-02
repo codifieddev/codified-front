@@ -2489,3 +2489,64 @@ h3.display {
   border-color: #1DC3F3;
   box-shadow: 0 0 0 2px rgba(29, 195, 243, 0.2);
 }
+
+/* ------------------- 8. CASE STUDIES SCROLL PINNING ------------------- */
+@media (min-width: 992px) {
+  #caseStudiesTrack .card-wrapper {
+    opacity: 0.45;
+    transform: scale(0.96);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  #caseStudiesTrack .card-wrapper.active {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  #caseStudiesTrack .card-wrapper.active .card {
+    border-color: rgba(29, 195, 243, 0.55) !important;
+    box-shadow: 0 0 0 1px rgba(29, 195, 243, 0.25), 0 0 40px rgba(29, 195, 243, 0.12) !important;
+  }
+  #case-studies .cs-progress-container {
+    display: block !important;
+  }
+}
+@media (max-width: 991px) {
+  .case-studies-track-wrap {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  #caseStudiesTrack .card-wrapper {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ------------------- 9. INDUSTRIES SCROLL PINNING ------------------- */
+@media (min-width: 992px) {
+  #industryTrack .card-wrapper {
+    opacity: 0.45;
+    transform: scale(0.96);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  #industryTrack .card-wrapper.active {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  #industryTrack .card-wrapper.active .engine-card {
+    border-color: rgba(29, 195, 243, 0.55) !important;
+    box-shadow: 0 0 0 1px rgba(29, 195, 243, 0.25), 0 0 40px rgba(29, 195, 243, 0.12) !important;
+  }
+  #engine .ind-progress-container {
+    display: block !important;
+  }
+}
+@media (max-width: 991px) {
+  .industry-track-wrap {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  #industryTrack .card-wrapper {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+

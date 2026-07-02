@@ -39,7 +39,7 @@ export default function ExpoLifeView({ locale }: { locale: string }) {
           {/* Right image */}
           <div style={{ flex: 1, minHeight: 520, position: 'relative' }}>
             <img
-              src="/assets/Image/Rectangle 1796.png"
+              src="https://www.hrescic.com/assets/Image/Rectangle%201796.png"
               alt="Desert Structure"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
             />
