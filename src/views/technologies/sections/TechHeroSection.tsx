@@ -157,9 +157,9 @@ export default function TechHeroSection() {
                   <span style={{
                     fontFamily: 'var(--font-mono)', fontSize: '10px',
                     color: 'var(--cyan)', letterSpacing: '0.1em',
-                    background: 'rgba(29,195,243,0.08)',
+                    background: 'color-mix(in srgb, var(--primary) 8%, transparent)',
                     padding: '4px 10px', borderRadius: '6px',
-                    border: '1px solid rgba(29,195,243,0.2)',
+                    border: '1px solid color-mix(in srgb, var(--primary) 20%, transparent)',
                   }}>
                     v4.2.1 · PROD
                   </span>

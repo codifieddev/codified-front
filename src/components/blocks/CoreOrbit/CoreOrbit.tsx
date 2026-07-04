@@ -8,17 +8,17 @@ interface Node {
 
 const TECH_NODES: Omit<Node, 'x' | 'y' | 'size'>[] = [
   // Layer 1 — core AI models
-  { label: 'GPT-4o',      color: '#1DC3F3', icon: '⬡', layer: 1 },
+  { label: 'GPT-4o',      color: '--primary', icon: '⬡', layer: 1 },
   { label: 'Gemini',      color: '#9a7bff', icon: '◈', layer: 1 },
-  { label: 'Claude',      color: '#F300A6', icon: '◉', layer: 1 },
+  { label: 'Claude',      color: '--accent', icon: '◉', layer: 1 },
   { label: 'LLaMA',       color: '#f1c27a', icon: '◇', layer: 1 },
   // Layer 2 — frameworks
   { label: 'LangChain',   color: '#9adcff', icon: '⬡', layer: 2 },
   { label: 'PyTorch',     color: '#5b8cff', icon: '◈', layer: 2 },
-  { label: 'TensorFlow',  color: '#F300A6', icon: '◉', layer: 2 },
+  { label: 'TensorFlow',  color: '--accent', icon: '◉', layer: 2 },
   { label: 'Hugging Face',color: '#f1c27a', icon: '◇', layer: 2 },
   { label: 'Vertex AI',   color: '#9a7bff', icon: '⬡', layer: 2 },
-  { label: 'OpenCV',      color: '#1DC3F3', icon: '◈', layer: 2 },
+  { label: 'OpenCV',      color: '--primary', icon: '◈', layer: 2 },
 ];
 
 function CodifiedLogo() {
@@ -30,6 +30,36 @@ function CodifiedLogo() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+
+    const getThemeColor = (colorStr: string, opacity: number = 1) => {
+      if (typeof window === 'undefined') return '#000';
+      let finalColor = colorStr;
+      
+      if (colorStr.startsWith('var(')) {
+        const varName = colorStr.replace('var(', '').replace(')', '').trim();
+        finalColor = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+      } else if (colorStr.startsWith('--')) {
+        finalColor = getComputedStyle(document.documentElement).getPropertyValue(colorStr).trim();
+      }
+
+      if (!finalColor) {
+        if (colorStr.includes('primary')) return `rgba(243, 0, 166, ${opacity})`;
+        if (colorStr.includes('accent')) return `rgba(243, 0, 166, ${opacity})`;
+        return colorStr;
+      }
+
+      if (finalColor.startsWith('#')) {
+        let hex = finalColor.replace('#', '');
+        if (hex.length === 3) {
+          hex = hex.split('').map(x => x + x).join('');
+        }
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
+        return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+      }
+      return finalColor;
+    };
 
     const S = 480; // always square
     canvas.width  = S;
@@ -60,7 +90,7 @@ function CodifiedLogo() {
       particles.push({ t: Math.random(), speed: 0.004 + Math.random() * 0.004, fromIdx: inner, toIdx: outer, color: nodes[inner].color });
     }
     for (let i = 0; i < 8; i++) {
-      particles.push({ t: Math.random(), speed: 0.005 + Math.random() * 0.004, fromIdx: -1, toIdx: Math.floor(Math.random() * 4), color: '#1DC3F3' });
+      particles.push({ t: Math.random(), speed: 0.005 + Math.random() * 0.004, fromIdx: -1, toIdx: Math.floor(Math.random() * 4), color: '--primary' });
     }
 
     let t = 0;
@@ -72,16 +102,16 @@ function CodifiedLogo() {
 
       // ── Background glow ────────────────────────
       const bgGrd = ctx.createRadialGradient(cx, cy, 0, cx, cy, S * 0.5);
-      bgGrd.addColorStop(0, 'rgba(29,195,243,0.04)');
+      bgGrd.addColorStop(0, getThemeColor('--primary', 0.04));
       bgGrd.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = bgGrd;
       ctx.fillRect(0, 0, S, S);
 
       // ── Orbit rings ─────────────────────────────
       const orbitData = [
-        { r: 105, color: 'rgba(29,195,243,0.20)', dash: [5, 10], spin: 0.003  },
+        { r: 105, color: getThemeColor('--primary', 0.2), dash: [5, 10], spin: 0.003  },
         { r: 185, color: 'rgba(154,123,255,0.15)', dash: [3, 14], spin: -0.002 },
-        { r: 230, color: 'rgba(243,0,166,0.10)',   dash: [2, 18], spin: 0.0015 },
+        { r: 230, color: getThemeColor('--accent', 0.1),   dash: [2, 18], spin: 0.0015 },
       ];
 
       orbitData.forEach(({ r, color, dash, spin }) => {
@@ -119,7 +149,7 @@ function CodifiedLogo() {
         ctx.beginPath();
         ctx.moveTo(cx, cy);
         ctx.lineTo(n.x, n.y);
-        ctx.strokeStyle = n.color + '28';
+        ctx.strokeStyle = getThemeColor(n.color, 0.15);
         ctx.lineWidth = 1;
         ctx.stroke();
       });
@@ -130,7 +160,7 @@ function CodifiedLogo() {
         ctx.beginPath();
         ctx.moveTo(target.x, target.y);
         ctx.lineTo(on.x, on.y);
-        ctx.strokeStyle = on.color + '20';
+        ctx.strokeStyle = getThemeColor(on.color, 0.12);
         ctx.lineWidth = 0.8;
         ctx.stroke();
       });
@@ -160,9 +190,9 @@ function CodifiedLogo() {
 
         ctx.beginPath();
         ctx.arc(px, py, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
+        ctx.fillStyle = getThemeColor(p.color);
         ctx.globalAlpha = alpha * 0.9;
-        ctx.shadowColor = p.color;
+        ctx.shadowColor = getThemeColor(p.color);
         ctx.shadowBlur = 8;
         ctx.fill();
         ctx.globalAlpha = 1;
@@ -176,8 +206,8 @@ function CodifiedLogo() {
 
         // Outer glow
         const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 4);
-        grd.addColorStop(0, n.color + '55');
-        grd.addColorStop(1, n.color + '00');
+        grd.addColorStop(0, getThemeColor(n.color, 0.33));
+        grd.addColorStop(1, getThemeColor(n.color, 0));
         ctx.beginPath();
         ctx.arc(n.x, n.y, r * 4, 0, Math.PI * 2);
         ctx.fillStyle = grd;
@@ -186,8 +216,8 @@ function CodifiedLogo() {
         // Node circle
         ctx.beginPath();
         ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-        ctx.fillStyle = n.color;
-        ctx.shadowColor = n.color;
+        ctx.fillStyle = getThemeColor(n.color);
+        ctx.shadowColor = getThemeColor(n.color);
         ctx.shadowBlur = 14;
         ctx.fill();
         ctx.shadowBlur = 0;
@@ -195,7 +225,7 @@ function CodifiedLogo() {
         // Ring around node
         ctx.beginPath();
         ctx.arc(n.x, n.y, r + 4, 0, Math.PI * 2);
-        ctx.strokeStyle = n.color + '40';
+        ctx.strokeStyle = getThemeColor(n.color, 0.25);
         ctx.lineWidth = 1;
         ctx.stroke();
 
@@ -205,7 +235,7 @@ function CodifiedLogo() {
         ctx.font = n.layer === 1
           ? 'bold 9.5px "JetBrains Mono", monospace'
           : '8.5px "JetBrains Mono", monospace';
-        ctx.fillStyle = n.color;
+        ctx.fillStyle = getThemeColor(n.color);
         ctx.globalAlpha = 0.9;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -219,9 +249,9 @@ function CodifiedLogo() {
 
       // Big outer glow
       const outerGrd = ctx.createRadialGradient(cx, cy, 0, cx, cy, 80);
-      outerGrd.addColorStop(0, 'rgba(29,195,243,0.25)');
+      outerGrd.addColorStop(0, getThemeColor('--primary', 0.25));
       outerGrd.addColorStop(0.5, 'rgba(91,140,255,0.1)');
-      outerGrd.addColorStop(1, 'rgba(29,195,243,0)');
+      outerGrd.addColorStop(1, getThemeColor('--primary', 0));
       ctx.beginPath();
       ctx.arc(cx, cy, 80, 0, Math.PI * 2);
       ctx.fillStyle = outerGrd;
@@ -235,7 +265,7 @@ function CodifiedLogo() {
       ctx.beginPath();
       ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
       ctx.fillStyle = coreGrd;
-      ctx.shadowColor = '#1DC3F3';
+      ctx.shadowColor = getThemeColor('--primary');
       ctx.shadowBlur = 40;
       ctx.fill();
       ctx.shadowBlur = 0;
@@ -243,7 +273,7 @@ function CodifiedLogo() {
       // Core ring
       ctx.beginPath();
       ctx.arc(cx, cy, coreR + 6, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(29,195,243,0.5)';
+      ctx.strokeStyle = getThemeColor('--primary', 0.5);
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
@@ -254,19 +284,18 @@ function CodifiedLogo() {
       ctx.fillStyle = '#ffffff';
       ctx.fillText('AI', cx, cy - 5);
       ctx.font = 'bold 7.5px "JetBrains Mono", monospace';
-      ctx.fillStyle = '#1DC3F3';
+      ctx.fillStyle = getThemeColor('--primary');
       ctx.fillText('ENGINE', cx, cy + 9);
 
       // ── Scanning line ────────────────────────────
       const scanAngle = t * 0.8;
-      const scanGrd = (ctx as any).createConicGradient ? null : null;
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(scanAngle);
       const sweep = ctx.createLinearGradient(0, 0, 235, 0);
-      sweep.addColorStop(0, 'rgba(29,195,243,0.0)');
-      sweep.addColorStop(0.7, 'rgba(29,195,243,0.15)');
-      sweep.addColorStop(1, 'rgba(29,195,243,0.0)');
+      sweep.addColorStop(0, getThemeColor('--primary', 0));
+      sweep.addColorStop(0.7, getThemeColor('--primary', 0.15));
+      sweep.addColorStop(1, getThemeColor('--primary', 0));
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.arc(0, 0, 235, -0.22, 0.22);
@@ -299,7 +328,7 @@ function CodifiedLogo() {
           height: '480px',
           maxWidth: '100%',
           aspectRatio: '1 / 1',
-          filter: 'drop-shadow(0 0 30px rgba(29,195,243,0.18))',
+          filter: 'drop-shadow(0 0 30px color-mix(in srgb, var(--primary) 18%, transparent))',
           display: 'block',
         }}
       />

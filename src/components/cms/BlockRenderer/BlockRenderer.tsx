@@ -22,11 +22,11 @@ export function BlockRenderer({ block, locale = 'en' }: BlockRendererProps) {
     if (process.env.NODE_ENV === 'development') {
       return (
         <div style={{
-          border: '1px dashed rgba(243,0,166,0.4)',
+          border: '1px dashed color-mix(in srgb, var(--accent) 40%, transparent)',
           padding: '16px',
           fontFamily: 'monospace',
           fontSize: '12px',
-          color: 'rgba(243,0,166,0.8)',
+          color: 'color-mix(in srgb, var(--accent) 80%, transparent)',
           borderRadius: '8px',
           margin: '8px 0',
         }}>

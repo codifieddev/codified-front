@@ -1,12 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@100..900&family=JetBrains+Mono:wght@300..700&display=swap");
-
 /* ==========================================================
    DESIGN SYSTEM
 ========================================================== */
 
 :root {
     /* Colors */
-    --primary: #F300A6;
+    --primary: #1DC3F3;
     --primary-light: #9adcff;
     --primary-dark: #0d8ec4;
     --primary-hover: #16a9d4;

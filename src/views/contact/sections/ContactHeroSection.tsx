@@ -138,7 +138,7 @@ export default function ContactHeroSection() {
 
             <div style={{
               marginTop: '64px', padding: '32px', border: '1px solid var(--line-strong)',
-              borderRadius: '24px', background: 'rgba(29, 195, 243, 0.03)', backdropFilter: 'blur(10px)',
+              borderRadius: '24px', background: 'color-mix(in srgb, var(--primary) 3%, transparent)', backdropFilter: 'blur(10px)',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
                 <ShieldCheck size={18} className="text-cyan-400" />
@@ -190,7 +190,7 @@ export default function ContactHeroSection() {
                   textAlign: 'center', padding: '48px 24px',
                   display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px',
                 }}>
-                  <CheckCircle size={48} style={{ color: '#1DC3F3' }} />
+                  <CheckCircle size={48} style={{ color: 'var(--primary)' }} />
                   <h4 style={{ fontSize: '20px', fontWeight: 600, color: 'var(--text)' }}>Message Sent!</h4>
                   <p style={{ fontSize: '14px', color: 'var(--text-mute)', lineHeight: 1.6 }}>
                     Thank you! We&apos;ve received your enquiry and will get back to you within 2 hours.
@@ -199,7 +199,7 @@ export default function ContactHeroSection() {
                     onClick={() => setStatus('idle')}
                     style={{
                       marginTop: '8px', padding: '10px 24px', borderRadius: '999px',
-                      border: '1px solid rgba(29,195,243,0.4)', background: 'transparent',
+                      border: '1px solid color-mix(in srgb, var(--primary) 40%, transparent)', background: 'transparent',
                       color: 'var(--cyan)', cursor: 'pointer', fontSize: '13px',
                     }}
                   >
@@ -281,7 +281,7 @@ export default function ContactHeroSection() {
                     className="btn"
                     style={{
                       width: '100%', justifyContent: 'center', padding: '18px',
-                      background: status === 'loading' ? 'rgba(29,195,243,0.5)' : 'var(--cyan)',
+                      background: status === 'loading' ? 'color-mix(in srgb, var(--primary) 50%, transparent)' : 'var(--cyan)',
                       color: '#04060d', fontWeight: 600,
                       marginTop: '12px', fontSize: '15px',
                       cursor: status === 'loading' ? 'not-allowed' : 'pointer',

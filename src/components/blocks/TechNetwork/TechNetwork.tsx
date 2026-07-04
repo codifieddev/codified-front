@@ -7,11 +7,11 @@ import { defaultTechnologiesData } from './TechnologiesData';
 
 /* ─── Node color map ──────────────────────────────────────────── */
 const COLORS: Record<string, string> = {
-  core:       '#1DC3F3',
+  core:       '--primary',
   admin:      '#5b8cff',
   storefront: '#9a7bff',
-  ai:         '#F300A6',
-  analytics:  '#1DC3F3',
+  ai:         '--accent',
+  analytics:  '--primary',
   payments:   '#f1c27a',
   vendor:     '#9a7bff',
 };
@@ -34,6 +34,36 @@ function NetworkCanvas({ nodes }: { nodes: any[] }) {
 
     let frameId: number;
     let t = 0;
+
+    const getThemeColor = (colorStr: string, opacity: number = 1) => {
+      if (typeof window === 'undefined') return '#000';
+      let finalColor = colorStr;
+      
+      if (colorStr.startsWith('var(')) {
+        const varName = colorStr.replace('var(', '').replace(')', '').trim();
+        finalColor = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+      } else if (colorStr.startsWith('--')) {
+        finalColor = getComputedStyle(document.documentElement).getPropertyValue(colorStr).trim();
+      }
+
+      if (!finalColor) {
+        if (colorStr.includes('primary')) return `rgba(243, 0, 166, ${opacity})`;
+        if (colorStr.includes('accent')) return `rgba(243, 0, 166, ${opacity})`;
+        return colorStr;
+      }
+
+      if (finalColor.startsWith('#')) {
+        let hex = finalColor.replace('#', '');
+        if (hex.length === 3) {
+          hex = hex.split('').map(x => x + x).join('');
+        }
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
+        return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+      }
+      return finalColor;
+    };
 
     /* ── Resize to fill container (square) ── */
     const resize = () => {
@@ -63,7 +93,7 @@ function NetworkCanvas({ nodes }: { nodes: any[] }) {
 
       /* background glow */
       const bg = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, W * 0.55);
-      bg.addColorStop(0, 'rgba(29,195,243,0.06)');
+      bg.addColorStop(0, getThemeColor('--primary', 0.06));
       bg.addColorStop(1, 'transparent');
       ctx.fillStyle = bg;
       ctx.fillRect(0, 0, W, H);
@@ -73,8 +103,8 @@ function NetworkCanvas({ nodes }: { nodes: any[] }) {
         ctx.beginPath();
         ctx.arc(W / 2, H / 2, r * W, 0, Math.PI * 2);
         ctx.strokeStyle = i === 0
-          ? 'rgba(29,195,243,0.15)'
-          : 'rgba(243,0,166,0.12)';
+          ? getThemeColor('--primary', 0.15)
+          : getThemeColor('--accent', 0.12);
         ctx.lineWidth = 1;
         ctx.stroke();
       });
@@ -95,12 +125,12 @@ function NetworkCanvas({ nodes }: { nodes: any[] }) {
 
       /* connection lines + packets */
       animated.forEach((n: any, i: number) => {
-        const color = COLORS[n.id] ?? '#1DC3F3';
+        const color = COLORS[n.id] ?? '--primary';
 
         /* dashed line */
         const lg = ctx.createLinearGradient(cpx, cpy, n.ax, n.ay);
-        lg.addColorStop(0, 'rgba(29,195,243,0.40)');
-        lg.addColorStop(1, color + '55');
+        lg.addColorStop(0, getThemeColor('--primary', 0.40));
+        lg.addColorStop(1, getThemeColor(color, 0.33));
         ctx.beginPath();
         ctx.moveTo(cpx, cpy);
         ctx.lineTo(n.ax, n.ay);
@@ -117,7 +147,7 @@ function NetworkCanvas({ nodes }: { nodes: any[] }) {
         ctx.beginPath();
         ctx.arc(px, py, W * 0.007, 0, Math.PI * 2);
         ctx.fillStyle   = '#fff';
-        ctx.shadowColor = color;
+        ctx.shadowColor = getThemeColor(color);
         ctx.shadowBlur  = 10;
         ctx.fill();
         ctx.shadowBlur  = 0;
@@ -125,13 +155,13 @@ function NetworkCanvas({ nodes }: { nodes: any[] }) {
 
       /* outer nodes */
       animated.forEach((n: any) => {
-        const color = COLORS[n.id] ?? '#1DC3F3';
+        const color = COLORS[n.id] ?? '--primary';
         const r     = W * 0.052;
         const label = (n.props?.label?.en ?? n.id).toUpperCase();
 
         /* halo */
         const halo = ctx.createRadialGradient(n.ax, n.ay, 0, n.ax, n.ay, r * 2.2);
-        halo.addColorStop(0, color + '28');
+        halo.addColorStop(0, getThemeColor(color, 0.15));
         halo.addColorStop(1, 'transparent');
         ctx.beginPath();
         ctx.arc(n.ax, n.ay, r * 2.2, 0, Math.PI * 2);
@@ -141,9 +171,9 @@ function NetworkCanvas({ nodes }: { nodes: any[] }) {
         /* ring */
         ctx.beginPath();
         ctx.arc(n.ax, n.ay, r, 0, Math.PI * 2);
-        ctx.strokeStyle = color;
+        ctx.strokeStyle = getThemeColor(color);
         ctx.lineWidth   = 1.5;
-        ctx.shadowColor = color;
+        ctx.shadowColor = getThemeColor(color);
         ctx.shadowBlur  = 14;
         ctx.stroke();
         ctx.shadowBlur  = 0;
@@ -157,7 +187,7 @@ function NetworkCanvas({ nodes }: { nodes: any[] }) {
         /* text */
         const fs = Math.max(8, W * 0.021);
         ctx.font         = `600 ${fs}px "JetBrains Mono",monospace`;
-        ctx.fillStyle    = color;
+        ctx.fillStyle    = getThemeColor(color);
         ctx.textAlign    = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(label, n.ax, n.ay);
@@ -165,10 +195,10 @@ function NetworkCanvas({ nodes }: { nodes: any[] }) {
 
       /* center node */
       const cr    = W * 0.078 + Math.sin(t * 1.8) * W * 0.005;
-      const cCol  = '#1DC3F3';
+      const cCol  = '--primary';
 
       const cHalo = ctx.createRadialGradient(cpx, cpy, 0, cpx, cpy, cr * 2.8);
-      cHalo.addColorStop(0, 'rgba(29,195,243,0.22)');
+      cHalo.addColorStop(0, getThemeColor('--primary', 0.22));
       cHalo.addColorStop(1, 'transparent');
       ctx.beginPath();
       ctx.arc(cpx, cpy, cr * 2.8, 0, Math.PI * 2);
@@ -177,9 +207,9 @@ function NetworkCanvas({ nodes }: { nodes: any[] }) {
 
       ctx.beginPath();
       ctx.arc(cpx, cpy, cr, 0, Math.PI * 2);
-      ctx.strokeStyle = cCol;
+      ctx.strokeStyle = getThemeColor(cCol);
       ctx.lineWidth   = 2;
-      ctx.shadowColor = cCol;
+      ctx.shadowColor = getThemeColor(cCol);
       ctx.shadowBlur  = 22;
       ctx.stroke();
       ctx.shadowBlur  = 0;
@@ -227,7 +257,7 @@ function NetworkCanvas({ nodes }: { nodes: any[] }) {
           borderRadius: '16px',
           border: '1px solid rgba(120,160,220,0.10)',
           background: 'radial-gradient(ellipse at center, rgba(95,140,255,0.06) 0%, transparent 70%), linear-gradient(180deg, rgba(8,12,24,0.5), rgba(4,6,13,0.5))',
-          filter: 'drop-shadow(0 0 24px rgba(29,195,243,0.14))',
+          filter: 'drop-shadow(0 0 24px color-mix(in srgb, var(--primary) 14%, transparent))',
         }}
       />
     </div>

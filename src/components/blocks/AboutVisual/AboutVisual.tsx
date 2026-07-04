@@ -19,12 +19,12 @@ export default function AboutConstellation() {
     const BASE = 480;
 
     const nodes = [
-      { x: 70,  y: 90,  label: 'STRATEGY', size: 20, color: '#1DC3F3' },
-      { x: 240, y: 70,  label: 'UI/UX',    size: 24, color: '#F300A6' },
+      { x: 70,  y: 90,  label: 'STRATEGY', size: 20, color: '--primary' },
+      { x: 240, y: 70,  label: 'UI/UX',    size: 24, color: '--accent' },
       { x: 410, y: 130, label: 'AI/ML',    size: 28, color: '#9a7bff' },
       { x: 100, y: 280, label: 'FRONTEND', size: 25, color: '#5b8cff' },
-      { x: 340, y: 300, label: 'BACKEND',  size: 24, color: '#1DC3F3' },
-      { x: 190, y: 410, label: 'DEVOPS',   size: 22, color: '#F300A6' },
+      { x: 340, y: 300, label: 'BACKEND',  size: 24, color: '--primary' },
+      { x: 190, y: 410, label: 'DEVOPS',   size: 22, color: '--accent' },
       { x: 400, y: 390, label: 'MOBILE',   size: 25, color: '#9a7bff' },
     ];
 
@@ -43,6 +43,36 @@ export default function AboutConstellation() {
     ro.observe(container);
     resize();
 
+    const getThemeColor = (colorStr: string, opacity: number = 1) => {
+      if (typeof window === 'undefined') return '#000';
+      let finalColor = colorStr;
+      
+      if (colorStr.startsWith('var(')) {
+        const varName = colorStr.replace('var(', '').replace(')', '').trim();
+        finalColor = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+      } else if (colorStr.startsWith('--')) {
+        finalColor = getComputedStyle(document.documentElement).getPropertyValue(colorStr).trim();
+      }
+
+      if (!finalColor) {
+        if (colorStr.includes('primary')) return `rgba(243, 0, 166, ${opacity})`;
+        if (colorStr.includes('accent')) return `rgba(243, 0, 166, ${opacity})`;
+        return colorStr;
+      }
+
+      if (finalColor.startsWith('#')) {
+        let hex = finalColor.replace('#', '');
+        if (hex.length === 3) {
+          hex = hex.split('').map(x => x + x).join('');
+        }
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
+        return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+      }
+      return finalColor;
+    };
+
     const draw = () => {
       const W = canvas.width;
       const H = canvas.height;
@@ -56,13 +86,13 @@ export default function AboutConstellation() {
       // Orbital rings (scaled)
       ctx.beginPath();
       ctx.arc(cx, cy, 140 * scale, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(29, 195, 243, 0.12)';
+      ctx.strokeStyle = getThemeColor('--primary', 0.12);
       ctx.lineWidth = 1;
       ctx.stroke();
 
       ctx.beginPath();
       ctx.arc(cx, cy, 210 * scale, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(243, 0, 166, 0.1)';
+      ctx.strokeStyle = getThemeColor('--accent', 0.10);
       ctx.lineWidth = 1;
       ctx.stroke();
 
@@ -97,7 +127,7 @@ export default function AboutConstellation() {
         ctx.beginPath();
         ctx.arc(px, py, 3.5 * scale, 0, Math.PI * 2);
         ctx.fillStyle = '#ffffff';
-        ctx.shadowColor = '#1DC3F3';
+        ctx.shadowColor = getThemeColor('--primary');
         ctx.shadowBlur = 12;
         ctx.fill();
         ctx.shadowBlur = 0;
@@ -108,14 +138,14 @@ export default function AboutConstellation() {
         // Glow halo
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.size * 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = n.color + '22';
+        ctx.fillStyle = getThemeColor(n.color, 0.13);
         ctx.fill();
 
         // Core circle
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.size, 0, Math.PI * 2);
-        ctx.fillStyle = n.color;
-        ctx.shadowColor = n.color;
+        ctx.fillStyle = getThemeColor(n.color);
+        ctx.shadowColor = getThemeColor(n.color);
         ctx.shadowBlur = 16;
         ctx.fill();
         ctx.shadowBlur = 0;
@@ -158,7 +188,7 @@ export default function AboutConstellation() {
           width: '100%',
           height: 'auto',
           display: 'block',
-          filter: 'drop-shadow(0 0 40px rgba(243,0,166,0.25))',
+          filter: 'drop-shadow(0 0 40px color-mix(in srgb, var(--accent) 25%, transparent))',
         }}
       />
     </div>

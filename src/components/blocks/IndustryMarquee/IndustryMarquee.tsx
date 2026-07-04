@@ -51,7 +51,7 @@ const IndustryCard = ({ c, isEditable, onSave, contentIdx }: { c: any; isEditabl
         color: '#9adcff',
         background: 'rgba(4,6,13,0.75)',
         backdropFilter: 'blur(8px)',
-        border: '1px solid rgba(29,195,243,0.2)',
+        border: '1px solid color-mix(in srgb, var(--primary) 20%, transparent)',
         borderRadius: '6px',
         padding: '4px 8px',
         textTransform: 'uppercase',
@@ -99,7 +99,7 @@ const IndustryCard = ({ c, isEditable, onSave, contentIdx }: { c: any; isEditabl
       position: 'absolute',
       bottom: 0, left: 0, right: 0,
       height: '1px',
-      background: 'linear-gradient(90deg, transparent, rgba(29,195,243,0.4), transparent)',
+      background: 'linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 40%, transparent), transparent)',
     }} />
   </div>
 );

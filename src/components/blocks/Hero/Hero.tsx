@@ -64,19 +64,19 @@ export default function Hero() {
                 key={item.id} 
                 className="group relative flex flex-col justify-between p-6 md:p-8 rounded-2xl overflow-hidden backdrop-blur-xl border transition-all duration-500 hover:-translate-y-2 cursor-default"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(29,195,243,0.04) 0%, rgba(14,22,42,0.5) 100%)',
-                  borderColor: 'rgba(29,195,243,0.15)',
+                  background: 'linear-gradient(135deg, color-mix(in srgb, var(--primary) 4%, transparent) 0%, rgba(14,22,42,0.5) 100%)',
+                  borderColor: 'color-mix(in srgb, var(--primary) 15%, transparent)',
                   boxShadow: '0 8px 32px rgba(0,0,0,0.2)'
                 }}
               >
                 {/* Subtle gradient glow on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{
-                  background: `radial-gradient(circle at center, ${idx % 2 === 0 ? 'rgba(29,195,243,0.12)' : 'rgba(154,123,255,0.12)'} 0%, transparent 70%)`
+                  background: `radial-gradient(circle at center, ${idx % 2 === 0 ? 'color-mix(in srgb, var(--primary) 12%, transparent)' : 'rgba(154,123,255,0.12)'} 0%, transparent 70%)`
                 }} />
 
                 {/* Animated Accent Line */}
                 <div className="absolute top-0 left-0 w-full h-[2px] opacity-40 group-hover:opacity-100 transition-all duration-300" style={{
-                  background: idx % 2 === 0 ? 'linear-gradient(90deg, #1DC3F3, transparent)' : 'linear-gradient(90deg, #9a7bff, transparent)'
+                  background: idx % 2 === 0 ? 'linear-gradient(90deg, var(--primary), transparent)' : 'linear-gradient(90deg, #9a7bff, transparent)'
                 }} />
 
                 <EditableText 
@@ -109,7 +109,7 @@ export default function Hero() {
                     WebkitBackgroundClip: 'text',
                     backgroundClip: 'text',
                     color: 'transparent',
-                    filter: `drop-shadow(0 0 12px ${idx % 2 === 0 ? 'rgba(29,195,243,0.25)' : 'rgba(154,123,255,0.25)'})`
+                    filter: `drop-shadow(0 0 12px ${idx % 2 === 0 ? 'color-mix(in srgb, var(--primary) 25%, transparent)' : 'rgba(154,123,255,0.25)'})`
                   }} 
                 />
               </div>

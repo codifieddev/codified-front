@@ -4,13 +4,13 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Zap, Brain, Shield,
 import DynamicLogoSlider from '@/components/blocks/DynamicLogoSlider/DynamicLogoSlider';
 
 const AI_STACK = [
-  { name: 'GPT-4o',       icon: '🧠', color: '#1DC3F3' },
+  { name: 'GPT-4o',       icon: '🧠', color: 'var(--primary)' },
   { name: 'LangChain',    icon: '🔗', color: '#9a7bff' },
-  { name: 'TensorFlow',   icon: '⚡', color: '#F300A6' },
+  { name: 'TensorFlow',   icon: '⚡', color: 'var(--accent)' },
   { name: 'PyTorch',      icon: '🔥', color: '#f1c27a' },
   { name: 'Vertex AI',    icon: '☁️', color: '#5b8cff' },
   { name: 'Hugging Face', icon: '🤗', color: '#9adcff' },
-  { name: 'OpenCV',       icon: '👁️', color: '#1DC3F3' },
+  { name: 'OpenCV',       icon: '👁️', color: 'var(--primary)' },
   { name: 'CUDA',         icon: '⬡',  color: '#9a7bff' },
 ];
 
@@ -25,14 +25,14 @@ export default function Footer() {
   return (
     <footer className="relative z-10 overflow-hidden" style={{
       background: 'linear-gradient(180deg, rgba(4,6,13,0) 0%, rgba(4,6,13,0.98) 8%)',
-      borderTop: '1px solid rgba(29,195,243,0.12)',
+      borderTop: '1px solid color-mix(in srgb, var(--primary) 12%, transparent)',
     }}>
 
       {/* ── Neural grid background ── */}
       <div className="absolute inset-0 pointer-events-none" style={{
         backgroundImage: `
-          linear-gradient(rgba(29,195,243,0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(29,195,243,0.03) 1px, transparent 1px)
+          linear-gradient(color-mix(in srgb, var(--primary) 3%, transparent) 1px, transparent 1px),
+          linear-gradient(90deg, color-mix(in srgb, var(--primary) 3%, transparent) 1px, transparent 1px)
         `,
         backgroundSize: '60px 60px',
         maskImage: 'radial-gradient(ellipse 80% 60% at 50% 100%, transparent 20%, black 100%)',
@@ -40,7 +40,7 @@ export default function Footer() {
 
       {/* ── Glow blobs ── */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[300px] pointer-events-none" style={{
-        background: 'radial-gradient(ellipse at center, rgba(29,195,243,0.06) 0%, transparent 70%)',
+        background: 'radial-gradient(ellipse at center, color-mix(in srgb, var(--primary) 6%, transparent) 0%, transparent 70%)',
       }} />
       <div className="absolute top-0 right-1/4 w-[500px] h-[250px] pointer-events-none" style={{
         background: 'radial-gradient(ellipse at center, rgba(154,123,255,0.05) 0%, transparent 70%)',
@@ -53,7 +53,7 @@ export default function Footer() {
           margin: '0 0 60px',
           padding: '48px 48px',
           borderRadius: '20px',
-          border: '1px solid rgba(29,195,243,0.2)',
+          border: '1px solid color-mix(in srgb, var(--primary) 20%, transparent)',
           background: 'linear-gradient(135deg, rgba(14,22,42,0.9) 0%, rgba(8,12,28,0.95) 50%, rgba(20,10,36,0.9) 100%)',
           position: 'relative',
           overflow: 'hidden',
@@ -61,11 +61,11 @@ export default function Footer() {
           {/* Banner glow */}
           <div style={{
             position: 'absolute', inset: 0, borderRadius: '20px', pointerEvents: 'none',
-            background: 'linear-gradient(135deg, rgba(29,195,243,0.06) 0%, transparent 50%, rgba(243,0,166,0.04) 100%)',
+            background: 'linear-gradient(135deg, color-mix(in srgb, var(--primary) 6%, transparent) 0%, transparent 50%, color-mix(in srgb, var(--accent) 4%, transparent) 100%)',
           }} />
           <div style={{
             position: 'absolute', top: '-1px', left: '10%', right: '10%', height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(29,195,243,0.6), rgba(154,123,255,0.4), transparent)',
+            background: 'linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 60%, transparent), rgba(154,123,255,0.4), transparent)',
           }} />
 
           <div className="relative flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
@@ -74,10 +74,10 @@ export default function Footer() {
                 display: 'inline-flex', alignItems: 'center', gap: '8px',
                 fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.22em',
                 color: 'var(--cyan-soft)', textTransform: 'uppercase',
-                padding: '5px 12px', border: '1px solid rgba(29,195,243,0.25)',
-                borderRadius: '999px', background: 'rgba(29,195,243,0.06)', marginBottom: '20px',
+                padding: '5px 12px', border: '1px solid color-mix(in srgb, var(--primary) 25%, transparent)',
+                borderRadius: '999px', background: 'color-mix(in srgb, var(--primary) 6%, transparent)', marginBottom: '20px',
               }}>
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#1DC3F3', boxShadow: '0 0 8px #1DC3F3', display: 'inline-block', animation: 'pulse 2s infinite' }} />
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary)', boxShadow: '0 0 8px var(--primary)', display: 'inline-block', animation: 'pulse 2s infinite' }} />
                 AI-Powered Solutions Ready
               </div>
               <h3 style={{
@@ -85,7 +85,7 @@ export default function Footer() {
                 letterSpacing: '-0.02em', lineHeight: 1.1, color: 'var(--text)', margin: '0 0 12px',
               }}>
                 Ready to build with <span style={{
-                  background: 'linear-gradient(120deg, #1DC3F3, #9a7bff)',
+                  background: 'linear-gradient(120deg, var(--primary), #9a7bff)',
                   WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent',
                 }}>intelligence?</span>
               </h3>
@@ -98,12 +98,12 @@ export default function Footer() {
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
                 fontFamily: 'var(--font-display)', fontSize: '13px', letterSpacing: '0.04em',
                 padding: '14px 28px', borderRadius: '999px',
-                background: 'linear-gradient(135deg, rgba(29,195,243,0.2), rgba(154,123,255,0.15))',
-                border: '1px solid rgba(29,195,243,0.4)',
+                background: 'linear-gradient(135deg, color-mix(in srgb, var(--primary) 20%, transparent), rgba(154,123,255,0.15))',
+                border: '1px solid color-mix(in srgb, var(--primary) 40%, transparent)',
                 color: '#dff5ff', transition: 'all .25s ease',
                 textDecoration: 'none',
               }}
-                onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)', e.currentTarget.style.boxShadow = '0 12px 40px rgba(29,195,243,0.2)')}
+                onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)', e.currentTarget.style.boxShadow = '0 12px 40px color-mix(in srgb, var(--primary) 20%, transparent)')}
                 onMouseLeave={e => (e.currentTarget.style.transform = '', e.currentTarget.style.boxShadow = '')}
               >
                 Start a Project <span>→</span>
@@ -226,7 +226,7 @@ export default function Footer() {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '18px', padding: '18px 24px', background: 'rgba(255,255,255,0.02)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ flexShrink: 0, width: '44px', height: '44px', borderRadius: '10px', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1DC3F3' }}>
+                <div style={{ flexShrink: 0, width: '44px', height: '44px', borderRadius: '10px', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
                   <MapPin size={22} />
                 </div>
                 <div>

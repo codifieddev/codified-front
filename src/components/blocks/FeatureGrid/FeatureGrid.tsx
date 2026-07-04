@@ -45,7 +45,7 @@ export default function WhyChooseUs() {
           
           <div className="core-stage" style={{ height: 'auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
              {cards.map((card: any, index: number) => (
-              <div key={index} className={`card ${index === 1 ? 'glow' : ''}`} style={index === 1 ? { padding: '32px', borderColor: 'rgba(29,195,243,0.3)', boxShadow: '0 0 30px rgba(29,195,243,0.1)' } : { padding: '32px' }}>
+              <div key={index} className={`card ${index === 1 ? 'glow' : ''}`} style={index === 1 ? { padding: '32px', borderColor: 'color-mix(in srgb, var(--primary) 30%, transparent)', boxShadow: '0 0 30px color-mix(in srgb, var(--primary) 10%, transparent)' } : { padding: '32px' }}>
                 <span className="corner tl"></span><span className="corner tr"></span><span className="corner bl"></span><span className="corner br"></span>
                 <div className="engine-card" style={{ height: 'auto', flex: 'none', border: 'none', padding: 0, background: 'none' }}>
                   <div className="num">{getText(card?.props?.code, '')}</div>

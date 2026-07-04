@@ -6,20 +6,20 @@ import Footer from '@/components/layout/Footer/Footer';
 import { ArrowRight, CheckCircle, AlertCircle, Loader2, Code2, Brain, Smartphone, PenTool, TrendingUp, Megaphone, Award, FolderGit2, Users, Banknote, BadgeCheck, Globe2 } from 'lucide-react';
 
 const ROLES = [
-  { icon: <Brain size={22} />, title: 'AI / ML Engineering', desc: 'Work on LLM pipelines, computer vision and real-world AI product integrations.', tag: 'AI · Python · LangChain', color: '#1DC3F3' },
+  { icon: <Brain size={22} />, title: 'AI / ML Engineering', desc: 'Work on LLM pipelines, computer vision and real-world AI product integrations.', tag: 'AI · Python · LangChain', color: 'var(--primary)' },
   { icon: <Code2 size={22} />, title: 'Full Stack Development', desc: 'Build production-grade web apps using Next.js, Node.js and modern databases.', tag: 'React · Node · Postgres', color: '#9a7bff' },
-  { icon: <Smartphone size={22} />, title: 'Mobile App Development', desc: 'Develop iOS & Android apps using React Native or Flutter on live client projects.', tag: 'React Native · Flutter', color: '#F300A6' },
+  { icon: <Smartphone size={22} />, title: 'Mobile App Development', desc: 'Develop iOS & Android apps using React Native or Flutter on live client projects.', tag: 'React Native · Flutter', color: 'var(--accent)' },
   { icon: <PenTool size={22} />, title: 'UI/UX Design', desc: 'Design stunning, user-centric interfaces for web and mobile products.', tag: 'Figma · Prototyping', color: '#f1c27a' },
-  { icon: <TrendingUp size={22} />, title: 'SEO & Digital Marketing', desc: 'Drive organic growth, manage campaigns and analyse performance data.', tag: 'SEO · Google Ads · Analytics', color: '#1DC3F3' },
+  { icon: <TrendingUp size={22} />, title: 'SEO & Digital Marketing', desc: 'Drive organic growth, manage campaigns and analyse performance data.', tag: 'SEO · Google Ads · Analytics', color: 'var(--primary)' },
   { icon: <Megaphone size={22} />, title: 'Content & Social Media', desc: 'Create compelling content strategy and manage brand presence across platforms.', tag: 'Copywriting · Social Media', color: '#9a7bff' },
 ];
 
 const PERKS = [
-  { icon: <Award size={22} />, color: '#1DC3F3', title: 'Certificate of Internship', desc: 'Official letter and certificate upon successful completion.' },
+  { icon: <Award size={22} />, color: 'var(--primary)', title: 'Certificate of Internship', desc: 'Official letter and certificate upon successful completion.' },
   { icon: <FolderGit2 size={22} />, color: '#9a7bff', title: 'Real Project Experience', desc: 'Work on live client projects — not dummy tasks.' },
-  { icon: <Users size={22} />, color: '#F300A6', title: 'Mentorship', desc: 'One-on-one guidance from senior engineers and product leads.' },
+  { icon: <Users size={22} />, color: 'var(--accent)', title: 'Mentorship', desc: 'One-on-one guidance from senior engineers and product leads.' },
   { icon: <Banknote size={22} />, color: '#f1c27a', title: 'Stipend (Performance)', desc: 'Performance-based stipend for standout interns.' },
-  { icon: <BadgeCheck size={22} />, color: '#1DC3F3', title: 'Pre-Placement Offer', desc: 'Top performers get a direct full-time opportunity.' },
+  { icon: <BadgeCheck size={22} />, color: 'var(--primary)', title: 'Pre-Placement Offer', desc: 'Top performers get a direct full-time opportunity.' },
   { icon: <Globe2 size={22} />, color: '#9a7bff', title: 'Remote Friendly', desc: 'Work from anywhere — we support hybrid & remote modes.' },
 ];
 
@@ -72,7 +72,7 @@ export default function InternshipPage() {
 
         {/* Background */}
         <div style={{ position: 'fixed', inset: 0, zIndex: -1, background: 'radial-gradient(circle at 20% 30%, rgba(154,123,255,0.06) 0%, transparent 60%)' }} />
-        <div style={{ position: 'fixed', inset: 0, zIndex: -1, background: 'radial-gradient(circle at 80% 70%, rgba(29,195,243,0.05) 0%, transparent 60%)' }} />
+        <div style={{ position: 'fixed', inset: 0, zIndex: -1, background: 'radial-gradient(circle at 80% 70%, color-mix(in srgb, var(--primary) 5%, transparent) 0%, transparent 60%)' }} />
 
         {/* ── HERO ── */}
         <section className="section" id="internship-hero" style={{ minHeight: 'auto', paddingTop: '120px', paddingBottom: '80px' }}>
@@ -218,7 +218,7 @@ export default function InternshipPage() {
                     </div>
                   ))}
                 </div>
-                <div style={{ marginTop: '40px', padding: '24px', borderRadius: '16px', border: '1px solid rgba(29,195,243,0.2)', background: 'rgba(29,195,243,0.04)' }}>
+                <div style={{ marginTop: '40px', padding: '24px', borderRadius: '16px', border: '1px solid color-mix(in srgb, var(--primary) 20%, transparent)', background: 'color-mix(in srgb, var(--primary) 4%, transparent)' }}>
                   <p style={{ fontSize: '13px', color: 'var(--text-mute)', lineHeight: 1.6 }}>
                     You can also directly email your resume to{' '}
                     <a href="mailto:hello@codifiedweb.com" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>hello@codifiedweb.com</a>
@@ -235,12 +235,12 @@ export default function InternshipPage() {
 
                   {status === 'success' ? (
                     <div style={{ textAlign: 'center', padding: '48px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-                      <CheckCircle size={52} style={{ color: '#1DC3F3' }} />
+                      <CheckCircle size={52} style={{ color: 'var(--primary)' }} />
                       <h4 style={{ fontSize: '22px', fontWeight: 700, color: 'var(--text)' }}>Application Submitted! 🎉</h4>
                       <p style={{ fontSize: '14px', color: 'var(--text-mute)', lineHeight: 1.6 }}>
                         Thank you! We've received your application and will reach out within 48 hours.
                       </p>
-                      <button onClick={() => setStatus('idle')} style={{ marginTop: '8px', padding: '10px 24px', borderRadius: '999px', border: '1px solid rgba(29,195,243,0.4)', background: 'transparent', color: 'var(--cyan)', cursor: 'pointer', fontSize: '13px' }}>
+                      <button onClick={() => setStatus('idle')} style={{ marginTop: '8px', padding: '10px 24px', borderRadius: '999px', border: '1px solid color-mix(in srgb, var(--primary) 40%, transparent)', background: 'transparent', color: 'var(--cyan)', cursor: 'pointer', fontSize: '13px' }}>
                         Apply for Another Role
                       </button>
                     </div>
@@ -286,7 +286,7 @@ export default function InternshipPage() {
                       )}
 
                       <button type="submit" disabled={status === 'loading'}
-                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '16px', borderRadius: '999px', background: status === 'loading' ? 'rgba(29,195,243,0.5)' : 'var(--cyan)', color: '#04060d', fontWeight: 700, fontSize: '15px', cursor: status === 'loading' ? 'not-allowed' : 'pointer', border: 'none', marginTop: '4px' }}>
+                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '16px', borderRadius: '999px', background: status === 'loading' ? 'color-mix(in srgb, var(--primary) 50%, transparent)' : 'var(--cyan)', color: '#04060d', fontWeight: 700, fontSize: '15px', cursor: status === 'loading' ? 'not-allowed' : 'pointer', border: 'none', marginTop: '4px' }}>
                         {status === 'loading' ? <><Loader2 size={18} style={{ animation: 'spin 1s linear infinite' }} /> Submitting...</> : <>Submit Application <ArrowRight size={18} /></>}
                       </button>
                     </form>

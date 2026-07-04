@@ -166,7 +166,7 @@ export default function CaseStudiesPage({ locale }: { locale: string }) {
           <div style={{
             position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)',
             width: '80vw', height: '500px',
-            background: 'radial-gradient(ellipse at top, rgba(29,195,243,0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse at top, color-mix(in srgb, var(--primary) 8%, transparent) 0%, transparent 70%)',
             pointerEvents: 'none', zIndex: 0
           }} />
 
@@ -221,7 +221,7 @@ export default function CaseStudiesPage({ locale }: { locale: string }) {
                   fontSize: '13px',
                   cursor: 'pointer',
                   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  boxShadow: activeFilter === filter ? '0 0 15px rgba(29, 195, 243, 0.3)' : 'none'
+                  boxShadow: activeFilter === filter ? '0 0 15px color-mix(in srgb, var(--primary) 30%, transparent)' : 'none'
                 }}
               >
                 {filter}
@@ -252,7 +252,7 @@ export default function CaseStudiesPage({ locale }: { locale: string }) {
                     >
                       {/* Hover Glow Effect */}
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{
-                        background: 'radial-gradient(circle at center, rgba(29,195,243,0.15) 0%, transparent 70%)',
+                        background: 'radial-gradient(circle at center, color-mix(in srgb, var(--primary) 15%, transparent) 0%, transparent 70%)',
                         zIndex: 1
                       }} />
 
@@ -291,7 +291,7 @@ export default function CaseStudiesPage({ locale }: { locale: string }) {
                           color: '#9adcff',
                           background: 'rgba(4,6,13,0.85)',
                           backdropFilter: 'blur(8px)',
-                          border: '1px solid rgba(29,195,243,0.25)',
+                          border: '1px solid color-mix(in srgb, var(--primary) 25%, transparent)',
                           borderRadius: '6px',
                           padding: '5px 10px',
                           textTransform: 'uppercase',
@@ -335,7 +335,7 @@ export default function CaseStudiesPage({ locale }: { locale: string }) {
                         position: 'absolute',
                         bottom: 0, left: 0, right: 0,
                         height: '2px',
-                        background: 'linear-gradient(90deg, transparent, rgba(29,195,243,0.8), transparent)',
+                        background: 'linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 80%, transparent), transparent)',
                         zIndex: 3
                       }} />
                     </div>
