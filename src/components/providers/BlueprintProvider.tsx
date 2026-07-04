@@ -41,8 +41,7 @@ export function BlueprintProvider({ children, context = 'public' }: BlueprintPro
   // ---- Apply CSS vars whenever theme changes ----------------------
   useEffect(() => {
     if (!activeTheme) return;
-    // Comment out applyTheme call to test/use local CSS color changes (globle_kalp.css)
-    // applyTheme(activeTheme, themeContext);
+    applyTheme(activeTheme, themeContext);
     didApply.current = true;
   }, [activeTheme, themeContext]);
 
