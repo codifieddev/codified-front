@@ -201,20 +201,27 @@ export const selectBlueprint = (state: RootState): BlueprintPayload | null =>
 export const selectThemeContext = (state: RootState): ThemeContext =>
   state.blueprint.activeThemeContext;
 
-/** Public theme (for the frontend website) */
+/** Public theme (for the frontend website) — prefers brandAssets, falls back to top-level */
 export const selectPublicTheme = (state: RootState): Theme | null =>
-  state.blueprint.payload?.public_theme ?? null;
+  state.blueprint.payload?.brandAssets?.public_theme
+  ?? state.blueprint.payload?.public_theme
+  ?? null;
 
-/** Admin theme (for the dashboard) */
+/** Admin theme (for the dashboard) — prefers brandAssets, falls back to top-level */
 export const selectAdminTheme = (state: RootState): Theme | null =>
-  state.blueprint.payload?.admin_theme ?? null;
+  state.blueprint.payload?.brandAssets?.admin_theme
+  ?? state.blueprint.payload?.admin_theme
+  ?? null;
 
 /** Active theme based on context — use this in the CSS injector */
 export const selectActiveTheme = (state: RootState): Theme | null => {
   const ctx = state.blueprint.activeThemeContext;
-  return ctx === 'admin'
-    ? state.blueprint.payload?.admin_theme ?? null
-    : state.blueprint.payload?.public_theme ?? null;
+  const payload = state.blueprint.payload;
+  if (!payload) return null;
+  if (ctx === 'admin') {
+    return payload.brandAssets?.admin_theme ?? payload.admin_theme ?? null;
+  }
+  return payload.brandAssets?.public_theme ?? payload.public_theme ?? null;
 };
 
 /** Brand value — taglines, social links */
