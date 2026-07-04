@@ -29,7 +29,7 @@ export default function ContactPage({ locale }: { locale: string }) {
         }} />
         <div style={{
           position: 'fixed', inset: 0, zIndex: -1,
-          background: 'radial-gradient(circle at 70% 30%, rgba(29,195,243,0.05) 0%, transparent 70%)'
+          background: 'radial-gradient(circle at 70% 30%, color-mix(in srgb, var(--primary) 5%, transparent) 0%, transparent 70%)'
         }} />
 
         <ContactHeroSection />

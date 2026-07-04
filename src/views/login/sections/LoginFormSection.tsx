@@ -52,7 +52,7 @@ export default function LoginFormSection() {
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <div style={{
               width: '56px', height: '56px', borderRadius: '16px',
-              background: 'rgba(29,195,243,0.1)', border: '1px solid rgba(29,195,243,0.2)',
+              background: 'color-mix(in srgb, var(--primary) 10%, transparent)', border: '1px solid color-mix(in srgb, var(--primary) 20%, transparent)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               margin: '0 auto 20px', color: 'var(--cyan)',
             }}>

@@ -34,7 +34,7 @@ export default function DeploymentSequenceSection() {
       ];
 
   return (
-    <section className="section" style={{ borderTop: '1px solid var(--line)', background: 'rgba(29, 195, 243, 0.02)' }}>
+    <section className="section" style={{ borderTop: '1px solid var(--line)', background: 'color-mix(in srgb, var(--primary) 2%, transparent)' }}>
       <div className="inner">
         <div style={{ textAlign: 'center', marginBottom: '64px' }}>
           <EditableText

@@ -34,7 +34,7 @@ export default function IndustryCTASection() {
           <div style={{
             position: 'absolute', top: 0, left: '50%', transform: 'translate(-50%, -50%)',
             width: '600px', height: '600px',
-            background: 'radial-gradient(circle at center, rgba(29,195,243,0.1) 0%, transparent 60%)',
+            background: 'radial-gradient(circle at center, color-mix(in srgb, var(--primary) 10%, transparent) 0%, transparent 60%)',
             pointerEvents: 'none'
           }} />
 

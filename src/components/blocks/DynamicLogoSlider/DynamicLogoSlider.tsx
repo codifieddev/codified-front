@@ -48,7 +48,7 @@ export default function DynamicLogoSlider() {
           {sliderImages.map((src, index) => (
             <div
               key={`logo-group1-${index}`}
-              className="flex flex-col items-center justify-center w-[110px] h-[110px] md:w-[130px] md:h-[130px] bg-white rounded-2xl shadow-[0_0_15px_rgba(29,195,243,0.1)] shrink-0 transition-transform duration-300 hover:-translate-y-2 cursor-default"
+              className="flex flex-col items-center justify-center w-[110px] h-[110px] md:w-[130px] md:h-[130px] bg-white rounded-2xl shadow-[0_0_15px_color-mix(in srgb, var(--primary) 10%, transparent)] shrink-0 transition-transform duration-300 hover:-translate-y-2 cursor-default"
             >
               <img
                 src={src}
@@ -62,7 +62,7 @@ export default function DynamicLogoSlider() {
           {sliderImages.map((src, index) => (
             <div
               key={`logo-group2-${index}`}
-              className="flex flex-col items-center justify-center w-[110px] h-[110px] md:w-[130px] md:h-[130px] bg-white rounded-2xl shadow-[0_0_15px_rgba(29,195,243,0.1)] shrink-0 transition-transform duration-300 hover:-translate-y-2 cursor-default"
+              className="flex flex-col items-center justify-center w-[110px] h-[110px] md:w-[130px] md:h-[130px] bg-white rounded-2xl shadow-[0_0_15px_color-mix(in srgb, var(--primary) 10%, transparent)] shrink-0 transition-transform duration-300 hover:-translate-y-2 cursor-default"
             >
               <img
                 src={src}

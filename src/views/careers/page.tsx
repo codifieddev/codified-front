@@ -6,20 +6,20 @@ import Footer from '@/components/layout/Footer/Footer';
 import { ArrowRight, CheckCircle, AlertCircle, Loader2, Code2, Brain, MonitorPlay, PenTool, TrendingUp, Server, HeartPulse, Clock, Globe2, BookOpen, Plane } from 'lucide-react';
 
 const OPEN_POSITIONS = [
-  { icon: <Brain size={22} />, title: 'Senior AI / ML Engineer', desc: 'Design and deploy scalable machine learning models and LLM-based solutions.', tag: 'Full-Time · Hybrid', color: '#1DC3F3' },
+  { icon: <Brain size={22} />, title: 'Senior AI / ML Engineer', desc: 'Design and deploy scalable machine learning models and LLM-based solutions.', tag: 'Full-Time · Hybrid', color: 'var(--primary)' },
   { icon: <Code2 size={22} />, title: 'Full Stack Developer', desc: 'Build and maintain end-to-end web applications using modern tech stacks.', tag: 'Full-Time · Remote', color: '#9a7bff' },
-  { icon: <MonitorPlay size={22} />, title: 'Frontend Engineer (React)', desc: 'Craft exceptional user experiences with React, Next.js, and TailwindCSS.', tag: 'Full-Time · Hybrid', color: '#F300A6' },
+  { icon: <MonitorPlay size={22} />, title: 'Frontend Engineer (React)', desc: 'Craft exceptional user experiences with React, Next.js, and TailwindCSS.', tag: 'Full-Time · Hybrid', color: 'var(--accent)' },
   { icon: <PenTool size={22} />, title: 'UI/UX Product Designer', desc: 'Lead the design of beautiful, intuitive, and conversion-focused digital products.', tag: 'Full-Time · Remote', color: '#f1c27a' },
-  { icon: <Server size={22} />, title: 'DevOps / Cloud Engineer', desc: 'Manage scalable cloud infrastructure, CI/CD pipelines, and server security.', tag: 'Full-Time · Hybrid', color: '#1DC3F3' },
+  { icon: <Server size={22} />, title: 'DevOps / Cloud Engineer', desc: 'Manage scalable cloud infrastructure, CI/CD pipelines, and server security.', tag: 'Full-Time · Hybrid', color: 'var(--primary)' },
   { icon: <TrendingUp size={22} />, title: 'Growth Marketing Manager', desc: 'Drive customer acquisition, lead generation, and brand visibility strategies.', tag: 'Full-Time · Remote', color: '#9a7bff' },
 ];
 
 const BENEFITS = [
-  { icon: <HeartPulse size={22} />, color: '#F300A6', title: 'Comprehensive Healthcare', desc: 'Top-tier medical insurance for you and your dependents.' },
-  { icon: <Globe2 size={22} />, color: '#1DC3F3', title: 'Remote-First Culture', desc: 'Work from anywhere with our flexible remote work policies.' },
+  { icon: <HeartPulse size={22} />, color: 'var(--accent)', title: 'Comprehensive Healthcare', desc: 'Top-tier medical insurance for you and your dependents.' },
+  { icon: <Globe2 size={22} />, color: 'var(--primary)', title: 'Remote-First Culture', desc: 'Work from anywhere with our flexible remote work policies.' },
   { icon: <Clock size={22} />, color: '#9a7bff', title: 'Flexible Working Hours', desc: 'We value outcomes over hours. Work when you are most productive.' },
   { icon: <BookOpen size={22} />, color: '#f1c27a', title: 'Learning & Development', desc: 'Annual budget for courses, conferences, and certifications.' },
-  { icon: <Plane size={22} />, color: '#1DC3F3', title: 'Paid Time Off', desc: 'Generous vacation days, sick leaves, and public holidays.' },
+  { icon: <Plane size={22} />, color: 'var(--primary)', title: 'Paid Time Off', desc: 'Generous vacation days, sick leaves, and public holidays.' },
   { icon: <MonitorPlay size={22} />, color: '#9a7bff', title: 'Home Office Setup', desc: 'Stipend to upgrade your workspace and hardware.' },
 ];
 
@@ -71,8 +71,8 @@ export default function CareersPage() {
       <main className="relative min-h-screen overflow-hidden" style={{ paddingTop: '80px' }}>
 
         {/* Background */}
-        <div style={{ position: 'fixed', inset: 0, zIndex: -1, background: 'radial-gradient(circle at 80% 20%, rgba(243,0,166,0.05) 0%, transparent 60%)' }} />
-        <div style={{ position: 'fixed', inset: 0, zIndex: -1, background: 'radial-gradient(circle at 20% 80%, rgba(29,195,243,0.06) 0%, transparent 60%)' }} />
+        <div style={{ position: 'fixed', inset: 0, zIndex: -1, background: 'radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--accent) 5%, transparent) 0%, transparent 60%)' }} />
+        <div style={{ position: 'fixed', inset: 0, zIndex: -1, background: 'radial-gradient(circle at 20% 80%, color-mix(in srgb, var(--primary) 6%, transparent) 0%, transparent 60%)' }} />
 
         {/* ── HERO ── */}
         <section className="section" id="careers-hero" style={{ minHeight: 'auto', paddingTop: '120px', paddingBottom: '80px' }}>
@@ -218,12 +218,12 @@ export default function CareersPage() {
 
                   {status === 'success' ? (
                     <div style={{ textAlign: 'center', padding: '48px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-                      <CheckCircle size={52} style={{ color: '#1DC3F3' }} />
+                      <CheckCircle size={52} style={{ color: 'var(--primary)' }} />
                       <h4 style={{ fontSize: '22px', fontWeight: 700, color: 'var(--text)' }}>Application Submitted! 🎉</h4>
                       <p style={{ fontSize: '14px', color: 'var(--text-mute)', lineHeight: 1.6 }}>
                         Thank you for applying. Our team will review your application and be in touch soon.
                       </p>
-                      <button onClick={() => setStatus('idle')} style={{ marginTop: '8px', padding: '10px 24px', borderRadius: '999px', border: '1px solid rgba(29,195,243,0.4)', background: 'transparent', color: 'var(--cyan)', cursor: 'pointer', fontSize: '13px' }}>
+                      <button onClick={() => setStatus('idle')} style={{ marginTop: '8px', padding: '10px 24px', borderRadius: '999px', border: '1px solid color-mix(in srgb, var(--primary) 40%, transparent)', background: 'transparent', color: 'var(--cyan)', cursor: 'pointer', fontSize: '13px' }}>
                         Apply for Another Role
                       </button>
                     </div>
@@ -277,7 +277,7 @@ export default function CareersPage() {
                       )}
 
                       <button type="submit" disabled={status === 'loading'}
-                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '16px', borderRadius: '999px', background: status === 'loading' ? 'rgba(29,195,243,0.5)' : 'var(--cyan)', color: '#04060d', fontWeight: 700, fontSize: '15px', cursor: status === 'loading' ? 'not-allowed' : 'pointer', border: 'none', marginTop: '4px' }}>
+                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '16px', borderRadius: '999px', background: status === 'loading' ? 'color-mix(in srgb, var(--primary) 50%, transparent)' : 'var(--cyan)', color: '#04060d', fontWeight: 700, fontSize: '15px', cursor: status === 'loading' ? 'not-allowed' : 'pointer', border: 'none', marginTop: '4px' }}>
                         {status === 'loading' ? <><Loader2 size={18} style={{ animation: 'spin 1s linear infinite' }} /> Submitting...</> : <>Submit Application <ArrowRight size={18} /></>}
                       </button>
                     </form>

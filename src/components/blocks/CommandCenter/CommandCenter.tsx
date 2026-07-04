@@ -162,7 +162,7 @@ export default function Results() {
                   <div className="num">{item.props?.prefix}<span data-target={item.props?.target}>0</span>{item.props?.suffix}</div>
                   <EditableText value={item.props?.sub?.en || ''} isEditable={isEditable} onSave={handle(`content.${i}.props.sub.en`)} className="sub" tag="div" />
                   <svg className="spark" viewBox="0 0 600 60" preserveAspectRatio="none">
-                    <defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#1DC3F3" stopOpacity=".5"/><stop offset="1" stopColor="#1DC3F3" stopOpacity="0"/></linearGradient></defs>
+                    <defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="var(--primary)" stopOpacity=".5"/><stop offset="1" stopColor="var(--primary)" stopOpacity="0"/></linearGradient></defs>
                     <path className="f" d="M0,55 L40,38 L80,42 L120,30 L160,33 L200,22 L240,28 L280,16 L320,24 L360,12 L400,18 L440,8 L480,14 L520,6 L560,12 L600,4 L600,60 L0,60 Z" />
                     <path className="l" d="M0,55 L40,38 L80,42 L120,30 L160,33 L200,22 L240,28 L280,16 L320,24 L360,12 L400,18 L440,8 L480,14 L520,6 L560,12 L600,4" />
                   </svg>

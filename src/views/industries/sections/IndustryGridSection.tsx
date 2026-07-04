@@ -20,7 +20,7 @@ const GridCard = ({ c, isEditable, onSave, contentIdx }: { c: any; isEditable: b
   >
     {/* Hover Glow Effect */}
     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{
-      background: 'radial-gradient(circle at center, rgba(29,195,243,0.15) 0%, transparent 70%)',
+      background: 'radial-gradient(circle at center, color-mix(in srgb, var(--primary) 15%, transparent) 0%, transparent 70%)',
       zIndex: 1
     }} />
 
@@ -55,7 +55,7 @@ const GridCard = ({ c, isEditable, onSave, contentIdx }: { c: any; isEditable: b
         color: '#9adcff',
         background: 'rgba(4,6,13,0.85)',
         backdropFilter: 'blur(8px)',
-        border: '1px solid rgba(29,195,243,0.25)',
+        border: '1px solid color-mix(in srgb, var(--primary) 25%, transparent)',
         borderRadius: '6px',
         padding: '5px 10px',
         textTransform: 'uppercase',
@@ -96,7 +96,7 @@ const GridCard = ({ c, isEditable, onSave, contentIdx }: { c: any; isEditable: b
       position: 'absolute',
       bottom: 0, left: 0, right: 0,
       height: '2px',
-      background: 'linear-gradient(90deg, transparent, rgba(29,195,243,0.8), transparent)',
+      background: 'linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 80%, transparent), transparent)',
       zIndex: 3
     }} />
   </div>

@@ -1,5 +1,6 @@
-@import "./globle_kalp.css";
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@100..900&family=JetBrains+Mono:wght@300..700&display=swap");
 @import "tailwindcss";
+@import "./globle_kalp.css";
 
 /* ------------------------------------------------------------------
    CODIFIED WEB SOLUTIONS — Cinematic Single Page
@@ -52,7 +53,7 @@ body {
   overflow-x: hidden;
   line-height: 1.55;
   letter-spacing: -0.005em;
-  background-image: radial-gradient(1200px 700px at 70% 0%, rgba(29, 195, 243, 0.06), transparent 60%), radial-gradient(900px 600px at 0% 60%, rgba(243, 0, 166, 0.05), transparent 60%);
+  background-image: radial-gradient(1200px 700px at 70% 0%, color-mix(in srgb, var(--primary) 6%, transparent), transparent 60%), radial-gradient(900px 600px at 0% 60%, color-mix(in srgb, var(--accent) 5%, transparent), transparent 60%);
 }
 
 a {
@@ -130,7 +131,7 @@ img {
   height: 22px;
   border-radius: 6px;
   background: conic-gradient(from 220deg at 50% 50%, var(--primary), var(--violet), var(--accent), var(--primary));
-  box-shadow: 0 0 18px rgba(29, 195, 243, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--primary) 35%, transparent), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
   position: relative;
 }
 
@@ -191,14 +192,14 @@ img {
   padding: 9px 16px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(29, 195, 243, 0.10), rgba(29, 195, 243, 0.02));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 10%, transparent), color-mix(in srgb, var(--primary) 2%, transparent));
   color: var(--primary-light);
   transition: all .25s ease;
-  box-shadow: inset 0 0 0 1px rgba(29, 195, 243, 0.10), 0 0 0 0 rgba(29, 195, 243, 0.0);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 10%, transparent), 0 0 0 0 color-mix(in srgb, var(--primary) 0%, transparent);
 }
 
 .nav .cta:hover {
-  box-shadow: inset 0 0 0 1px rgba(29, 195, 243, 0.35), 0 0 30px rgba(29, 195, 243, 0.18);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 35%, transparent), 0 0 30px color-mix(in srgb, var(--primary) 18%, transparent);
   transform: translateY(-1px)
 }
 
@@ -229,15 +230,15 @@ img {
   height: 36px;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: rgba(29, 195, 243, 0.04);
+  background: color-mix(in srgb, var(--primary) 4%, transparent);
   cursor: pointer;
   padding: 0;
   transition: background .2s ease, border-color .2s ease;
 }
 
 .hamburger:hover {
-  background: rgba(29, 195, 243, 0.10);
-  border-color: rgba(29, 195, 243, 0.3)
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  border-color: color-mix(in srgb, var(--primary) 30%, transparent)
 }
 
 .ham-line {
@@ -302,15 +303,15 @@ img {
 
 .mobile-drawer a:hover {
   color: var(--text);
-  background: rgba(29, 195, 243, 0.04)
+  background: color-mix(in srgb, var(--primary) 4%, transparent)
 }
 
 .mobile-drawer .drawer-cta {
   margin: 14px 22px 18px;
   border-radius: 999px;
   text-align: center;
-  background: linear-gradient(180deg, rgba(29, 195, 243, 0.16), rgba(29, 195, 243, 0.04));
-  border: 1px solid rgba(29, 195, 243, 0.3) !important;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 16%, transparent), color-mix(in srgb, var(--primary) 4%, transparent));
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent) !important;
   color: var(--primary-light) !important;
   font-size: 14px;
   letter-spacing: 0.04em;
@@ -379,7 +380,7 @@ img {
 
 .mega-sidebar .cat-btn:hover,
 .mega-sidebar .cat-btn.active {
-  background: rgba(29, 195, 243, 0.1);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
   color: var(--primary);
 }
 
@@ -421,8 +422,8 @@ img {
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background: rgba(29, 195, 243, 0.1);
-  border: 1px solid rgba(29, 195, 243, 0.2);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -481,7 +482,7 @@ img {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(45deg, rgba(29, 195, 243, 0.2), transparent);
+  background: linear-gradient(45deg, color-mix(in srgb, var(--primary) 20%, transparent), transparent);
   pointer-events: none;
 }
 
@@ -503,17 +504,17 @@ img {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(29, 195, 243, 0.06), transparent 40%);
+  background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), color-mix(in srgb, var(--primary) 6%, transparent), transparent 40%);
   opacity: 0;
   transition: opacity 0.5s ease;
   pointer-events: none;
 }
 
 .glow-card:hover {
-  border-color: rgba(29, 195, 243, 0.4);
-  background: rgba(29, 195, 243, 0.03);
+  border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+  background: color-mix(in srgb, var(--primary) 3%, transparent);
   transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(29, 195, 243, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px color-mix(in srgb, var(--primary) 8%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .glow-card:hover::before {
@@ -527,16 +528,16 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(29, 195, 243, 0.08);
-  border: 1px solid rgba(29, 195, 243, 0.2);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
   color: var(--primary);
   margin-bottom: 24px;
   transition: all 0.3s ease;
 }
 
 .glow-card:hover .ico {
-  background: rgba(29, 195, 243, 0.15);
-  box-shadow: 0 0 20px rgba(29, 195, 243, 0.2);
+  background: color-mix(in srgb, var(--primary) 15%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--primary) 20%, transparent);
   transform: scale(1.05);
 }
 
@@ -723,12 +724,12 @@ img {
   border-radius: 50%;
   background: var(--text-muted);
   transition: all .3s ease;
-  box-shadow: 0 0 0 0 rgba(29, 195, 243, 0)
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 0%, transparent)
 }
 
 .rail .item.active .dot {
   background: var(--primary);
-  box-shadow: 0 0 0 5px rgba(29, 195, 243, 0.15), 0 0 18px rgba(29, 195, 243, 0.7)
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--primary) 15%, transparent), 0 0 18px color-mix(in srgb, var(--primary) 70%, transparent)
 }
 
 .rail .item:hover {
@@ -764,7 +765,7 @@ img {
   padding: 6px 12px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: rgba(29, 195, 243, 0.04);
+  background: color-mix(in srgb, var(--primary) 4%, transparent);
 }
 
 .label .num {
@@ -817,7 +818,7 @@ h3.display {
 }
 
 .grad-text {
-  background: linear-gradient(120deg, #fff 0%, #b8d6ff 40%, #1DC3F3 100%);
+  background: linear-gradient(120deg, #fff 0%, #b8d6ff 40%, var(--primary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent
@@ -944,7 +945,7 @@ h3.display {
   padding: 13px 22px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(29, 195, 243, 0.16), rgba(29, 195, 243, 0.02));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 16%, transparent), color-mix(in srgb, var(--primary) 2%, transparent));
   color: #dff5ff;
   cursor: pointer;
   transition: all .25s ease;
@@ -955,7 +956,7 @@ h3.display {
 
 .btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 40px rgba(29, 195, 243, 0.18), inset 0 0 0 1px rgba(29, 195, 243, 0.4)
+  box-shadow: 0 10px 40px color-mix(in srgb, var(--primary) 18%, transparent), inset 0 0 0 1px color-mix(in srgb, var(--primary) 40%, transparent)
 }
 
 .btn.ghost {
@@ -1058,9 +1059,9 @@ h3.display {
 
 .core-ring {
   position: absolute;
-  border: 1px solid rgba(29, 195, 243, 0.18);
+  border: 1px solid color-mix(in srgb, var(--primary) 18%, transparent);
   border-radius: 50%;
-  box-shadow: inset 0 0 40px rgba(29, 195, 243, 0.06);
+  box-shadow: inset 0 0 40px color-mix(in srgb, var(--primary) 6%, transparent);
 }
 
 .core-ring.r1 {
@@ -1069,12 +1070,12 @@ h3.display {
 
 .core-ring.r2 {
   inset: 18%;
-  border-color: rgba(243, 0, 166, 0.24)
+  border-color: color-mix(in srgb, var(--accent) 24%, transparent)
 }
 
 .core-ring.r3 {
   inset: 28%;
-  border-color: rgba(29, 195, 243, 0.30)
+  border-color: color-mix(in srgb, var(--primary) 30%, transparent)
 }
 
 .core-orb {
@@ -1082,7 +1083,7 @@ h3.display {
   inset: 38%;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #6dccff 0%, #2755b8 50%, #0a1124 100%);
-  box-shadow: 0 0 80px rgba(95, 140, 255, 0.35), inset 0 0 60px rgba(29, 195, 243, 0.25);
+  box-shadow: 0 0 80px rgba(95, 140, 255, 0.35), inset 0 0 60px color-mix(in srgb, var(--primary) 25%, transparent);
 }
 
 .core-tag {
@@ -1177,7 +1178,7 @@ h3.display {
   letter-spacing: 0.12em;
   color: var(--primary-light);
   padding: 5px 10px;
-  border: 1px solid rgba(29, 195, 243, 0.25);
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
   border-radius: 999px;
   background: rgba(8, 14, 28, 0.75);
   backdrop-filter: blur(6px);
@@ -1254,8 +1255,8 @@ h3.display {
   border-radius: 8px;
   display: grid;
   place-items: center;
-  background: rgba(29, 195, 243, 0.10);
-  border: 1px solid rgba(29, 195, 243, 0.18);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 18%, transparent);
   color: var(--primary-light);
   font-family: var(--font-mono);
   font-size: 13px;
@@ -1288,7 +1289,7 @@ h3.display {
 }
 
 .module.glow {
-  box-shadow: 0 0 0 1px rgba(29, 195, 243, 0.35), 0 0 30px rgba(29, 195, 243, 0.18)
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 35%, transparent), 0 0 30px color-mix(in srgb, var(--primary) 18%, transparent)
 }
 
 /* ------------------- 4. API NETWORK ------------------- */
@@ -1352,7 +1353,7 @@ h3.display {
 .net-node:hover,
 .net-node.active {
   color: var(--text);
-  box-shadow: 0 0 0 1px rgba(29, 195, 243, 0.5), 0 0 30px rgba(29, 195, 243, 0.18);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 50%, transparent), 0 0 30px color-mix(in srgb, var(--primary) 18%, transparent);
   transform: translate(-50%, -50%) translateY(-2px)
 }
 
@@ -1363,12 +1364,12 @@ h3.display {
   letter-spacing: 0.06em;
   text-transform: none;
   color: var(--text);
-  background: linear-gradient(180deg, rgba(29, 195, 243, 0.12), rgba(29, 195, 243, 0.02))
+  background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 12%, transparent), color-mix(in srgb, var(--primary) 2%, transparent))
 }
 
 .packet {
   fill: var(--primary);
-  filter: drop-shadow(0 0 6px rgba(29, 195, 243, 0.8))
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--primary) 80%, transparent))
 }
 
 .node-modal {
@@ -1419,7 +1420,7 @@ h3.display {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--primary-light);
-  background: rgba(29, 195, 243, 0.06);
+  background: color-mix(in srgb, var(--primary) 6%, transparent);
   padding: 6px 10px;
   border-radius: 6px;
   display: inline-block;
@@ -1472,7 +1473,7 @@ h3.display {
   inset: -1px;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(135deg, rgba(29, 195, 243, 0.18), transparent 40%, rgba(243, 0, 166, 0.16));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 18%, transparent), transparent 40%, color-mix(in srgb, var(--accent) 16%, transparent));
   -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
   mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
   -webkit-mask-composite: xor;
@@ -1558,7 +1559,7 @@ h3.display {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(29, 195, 243, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 30%, transparent), transparent);
   transform: translateY(-50%);
   z-index: 0;
 }
@@ -1623,7 +1624,7 @@ h3.display {
   border-radius: 8px;
   display: grid;
   place-items: center;
-  background: rgba(29, 195, 243, 0.06);
+  background: color-mix(in srgb, var(--primary) 6%, transparent);
   border: 1px solid var(--border);
   font-family: var(--font-mono);
   font-size: 13px;
@@ -1631,20 +1632,20 @@ h3.display {
 }
 
 .pipe-step.active {
-  border-color: rgba(29, 195, 243, 0.55);
-  box-shadow: 0 0 0 1px rgba(29, 195, 243, 0.25), 0 0 40px rgba(29, 195, 243, 0.12)
+  border-color: color-mix(in srgb, var(--primary) 55%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 25%, transparent), 0 0 40px color-mix(in srgb, var(--primary) 12%, transparent)
 }
 
 .pipe-step.active .badge {
-  background: rgba(29, 195, 243, 0.12);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
   color: var(--primary-light);
-  border-color: rgba(29, 195, 243, 0.3)
+  border-color: color-mix(in srgb, var(--primary) 30%, transparent)
 }
 
 .pipe-step.done .badge {
-  background: rgba(243, 0, 166, 0.10);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
   color: #cdb6ff;
-  border-color: rgba(243, 0, 166, 0.3)
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent)
 }
 
 .pipe-progress {
@@ -1656,7 +1657,7 @@ h3.display {
   transform: translateY(-50%);
   width: 0%;
   z-index: 0;
-  box-shadow: 0 0 12px rgba(29, 195, 243, 0.6);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--primary) 60%, transparent);
 }
 
 .ai-readout {
@@ -1778,7 +1779,7 @@ h3.display {
   stroke: var(--primary);
   stroke-width: 1.4;
   opacity: .85;
-  filter: drop-shadow(0 0 4px rgba(29, 195, 243, 0.6))
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--primary) 60%, transparent))
 }
 
 .spark path.f {
@@ -2472,13 +2473,13 @@ h3.display {
   border-radius: 2px;
 }
 .editable-text:hover {
-  outline: 2px dashed #1DC3F3;
+  outline: 2px dashed var(--primary);
   outline-offset: 2px;
 }
 
 .editable-input {
-  background: rgba(29, 195, 243, 0.08);
-  border: 1px solid rgba(29, 195, 243, 0.4);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent);
   border-radius: 4px;
   padding: 2px 6px;
   min-width: 60px;
@@ -2486,8 +2487,8 @@ h3.display {
   outline: none;
 }
 .editable-input:focus {
-  border-color: #1DC3F3;
-  box-shadow: 0 0 0 2px rgba(29, 195, 243, 0.2);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 20%, transparent);
 }
 
 /* ------------------- 8. CASE STUDIES SCROLL PINNING ------------------- */
@@ -2502,8 +2503,8 @@ h3.display {
     transform: scale(1.02);
   }
   #caseStudiesTrack .card-wrapper.active .card {
-    border-color: rgba(29, 195, 243, 0.55) !important;
-    box-shadow: 0 0 0 1px rgba(29, 195, 243, 0.25), 0 0 40px rgba(29, 195, 243, 0.12) !important;
+    border-color: color-mix(in srgb, var(--primary) 55%, transparent) !important;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 25%, transparent), 0 0 40px color-mix(in srgb, var(--primary) 12%, transparent) !important;
   }
   #case-studies .cs-progress-container {
     display: block !important;
@@ -2532,8 +2533,8 @@ h3.display {
     transform: scale(1.02);
   }
   #industryTrack .card-wrapper.active .engine-card {
-    border-color: rgba(29, 195, 243, 0.55) !important;
-    box-shadow: 0 0 0 1px rgba(29, 195, 243, 0.25), 0 0 40px rgba(29, 195, 243, 0.12) !important;
+    border-color: color-mix(in srgb, var(--primary) 55%, transparent) !important;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 25%, transparent), 0 0 40px color-mix(in srgb, var(--primary) 12%, transparent) !important;
   }
   #engine .ind-progress-container {
     display: block !important;

@@ -25,7 +25,7 @@ export default function IndustryHeroSection() {
       <div style={{
         position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)',
         width: '80vw', height: '600px',
-        background: 'radial-gradient(ellipse at top, rgba(29,195,243,0.1) 0%, transparent 70%)',
+        background: 'radial-gradient(ellipse at top, color-mix(in srgb, var(--primary) 10%, transparent) 0%, transparent 70%)',
         pointerEvents: 'none', zIndex: 0
       }} />
 

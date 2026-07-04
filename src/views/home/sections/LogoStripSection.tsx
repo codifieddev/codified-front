@@ -33,7 +33,7 @@ export default function LogoStripSection() {
       >
         <div className="flex gap-4 pr-4 md:gap-6 md:pr-6 shrink-0">
           {techLogos.map((item) => (
-            <div key={item.id} className="flex flex-col items-center justify-center w-[110px] h-[110px] md:w-[130px] md:h-[130px] bg-white rounded-2xl shadow-[0_0_15px_rgba(29,195,243,0.1)] shrink-0 transition-transform duration-300 hover:-translate-y-2 cursor-default">
+            <div key={item.id} className="flex flex-col items-center justify-center w-[110px] h-[110px] md:w-[130px] md:h-[130px] bg-white rounded-2xl shadow-[0_0_15px_color-mix(in srgb, var(--primary) 10%, transparent)] shrink-0 transition-transform duration-300 hover:-translate-y-2 cursor-default">
               <img src={item.icon} alt={item.name} className="w-12 h-12 md:w-14 md:h-14 mb-2 md:mb-3 object-contain" />
               <span className="text-black font-semibold text-[10px] md:text-[12px] text-center tracking-tight" style={{ fontFamily: 'var(--font-sans)' }}>
                 {item.name}
@@ -43,7 +43,7 @@ export default function LogoStripSection() {
         </div>
         <div className="flex gap-4 pr-4 md:gap-6 md:pr-6 shrink-0">
           {techLogos.map((item) => (
-            <div key={`dup-${item.id}`} className="flex flex-col items-center justify-center w-[110px] h-[110px] md:w-[130px] md:h-[130px] bg-white rounded-2xl shadow-[0_0_15px_rgba(29,195,243,0.1)] shrink-0 transition-transform duration-300 hover:-translate-y-2 cursor-default">
+            <div key={`dup-${item.id}`} className="flex flex-col items-center justify-center w-[110px] h-[110px] md:w-[130px] md:h-[130px] bg-white rounded-2xl shadow-[0_0_15px_color-mix(in srgb, var(--primary) 10%, transparent)] shrink-0 transition-transform duration-300 hover:-translate-y-2 cursor-default">
               <img src={item.icon} alt={item.name} className="w-12 h-12 md:w-14 md:h-14 mb-2 md:mb-3 object-contain" />
               <span className="text-black font-semibold text-[10px] md:text-[12px] text-center tracking-tight" style={{ fontFamily: 'var(--font-sans)' }}>
                 {item.name}
@@ -53,7 +53,7 @@ export default function LogoStripSection() {
         </div>
         <div className="flex gap-4 pr-4 md:gap-6 md:pr-6 shrink-0">
           {techLogos.map((item) => (
-            <div key={`dup2-${item.id}`} className="flex flex-col items-center justify-center w-[110px] h-[110px] md:w-[130px] md:h-[130px] bg-white rounded-2xl shadow-[0_0_15px_rgba(29,195,243,0.1)] shrink-0 transition-transform duration-300 hover:-translate-y-2 cursor-default">
+            <div key={`dup2-${item.id}`} className="flex flex-col items-center justify-center w-[110px] h-[110px] md:w-[130px] md:h-[130px] bg-white rounded-2xl shadow-[0_0_15px_color-mix(in srgb, var(--primary) 10%, transparent)] shrink-0 transition-transform duration-300 hover:-translate-y-2 cursor-default">
               <img src={item.icon} alt={item.name} className="w-12 h-12 md:w-14 md:h-14 mb-2 md:mb-3 object-contain" />
               <span className="text-black font-semibold text-[10px] md:text-[12px] text-center tracking-tight" style={{ fontFamily: 'var(--font-sans)' }}>
                 {item.name}

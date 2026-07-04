@@ -157,7 +157,6 @@ export default function Navigation() {
             <Link href="/industries" className={activeMega === 'industries' ? 'active' : ''}>Industries</Link>
           </div>
           <div><Link href="/technologies">Technologies</Link></div>
-          <div><Link href="/case-studies">Case Studies</Link></div>
           <div><Link href="/contact">Contact</Link></div>
         </div>
 
@@ -271,7 +270,7 @@ export default function Navigation() {
           padding: 16px 22px; font-family: var(--font-heading); font-size: 16px; font-weight: 500;
           color: var(--text-secondary); cursor: pointer; transition: color 0.2s ease, background 0.2s ease;
         }
-        .mobile-item-head:hover { color: var(--text); background: rgba(29, 195, 243, 0.04); }
+        .mobile-item-head:hover { color: var(--text); background: color-mix(in srgb, var(--primary) 4%, transparent); }
         .mobile-sub {
           max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           background: rgba(0, 0, 0, 0.2);
@@ -336,7 +335,6 @@ export default function Navigation() {
         </div>
 
         <Link href="/technologies" onClick={closeMenu}>Technologies</Link>
-        <Link href="/case-studies" onClick={closeMenu}>Case Studies</Link>
         <Link href="/contact" onClick={closeMenu}>Contact</Link>
         <Link href="/contact" className="drawer-cta" onClick={closeMenu}>Free Consultation →</Link>
       </div>
