@@ -45,7 +45,7 @@ export const fetchFastApiPagesThunk = createAsyncThunk(
       }
       const data= await response.json();
       console.log("all pages fetched ", data)
-      return data.data;
+      return data.pages || data.data || [];
     } catch (error: any) {
       return rejectWithValue(error.message);
     }

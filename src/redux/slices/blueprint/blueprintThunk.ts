@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { BlueprintApiResponse, BlueprintPayload, Theme, ThemeContext } from './blueprintType';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;           // https://kalptree.xyz/api
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;           // https://admin.kalptree.xyz/api
 const TENANT_HEADER = process.env.NEXT_PUBLIC_TENANT_DB        // e.g. "kp_codified_web_solution"
   ?? process.env.TENANT_DB_NAME
   ?? 'kp_codified_web_solution';
