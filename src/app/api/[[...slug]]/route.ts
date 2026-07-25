@@ -37,6 +37,8 @@ async function handleProxy(req: NextRequest, context: { params: Promise<{ slug?:
     targetPath = "commerce/" + rest;
   } else if (base === "form-data") {
     targetPath = "form-data";
+  } else if (base === "cms") {
+    targetPath = "publishing/" + rest;
   }
 
   return proxyRequest(req, targetPath, { addApiPrefix });

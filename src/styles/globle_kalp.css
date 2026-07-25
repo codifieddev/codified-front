@@ -11,6 +11,7 @@
 
     --secondary: #070b18;
     --accent: #F300A6;
+    --violet: #9a7bff;
 
     --background: #04060d;
     --surface: #070b18;
@@ -27,7 +28,6 @@
     --warning: #f1c27a;
     --danger: #ef4444;
     --info: #5b8cff;
-    --violet: #9a7bff;
 
     /* Fonts */
     --font-body: "Inter", system-ui, sans-serif;
@@ -96,25 +96,27 @@
     --btn-height: 48px;
     --btn-padding-x: 24px;
     --btn-radius: 8px;
+    --btn-primary-bg: #1DC3F3;
+    --btn-primary-text: #e9eefb;
+    --btn-primary-hover: #16a9d4;
+    --btn-secondary-bg: #070b18;
+    --btn-secondary-text: #e9eefb;
+    --btn-secondary-hover: #0a1224;
 
     /* Forms */
     --input-height: 48px;
     --input-padding-x: 16px;
     --input-padding-y: 12px;
-
     --input-radius: 8px;
-
     --input-bg: #0a1224;
     --input-text: #e9eefb;
     --input-border: rgba(120, 160, 220, 0.10);
+    --input-border-hover: #1DC3F3;
     --input-placeholder: #6e7c9a;
-
     --input-focus-border: #1DC3F3;
     --input-focus-shadow: 0 0 0 4px rgba(29, 195, 243, 0.15);
-
     --input-disabled-bg: #070b18;
     --input-disabled-text: #6e7c9a;
-
     --textarea-min-height: 140px;
 
     /* Modal */
