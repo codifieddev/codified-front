@@ -17,7 +17,7 @@ export async function checkSession(): Promise<SessionResult | null> {
   };
   console.log("get daat. token ")
   try {
-    const res = await fetch(`${api}/auth/me`, {
+    const res = await fetch(`/api/auth/me`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
