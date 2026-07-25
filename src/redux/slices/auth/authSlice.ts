@@ -24,7 +24,7 @@ export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
-      const data = await fetcher<LoginResponse>(`${api}/auth/login`, {
+      const data = await fetcher<LoginResponse>(`/api/auth/login`, {
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
