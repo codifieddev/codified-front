@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 import { MongoClient, ObjectId } from 'mongodb';
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const body = await req.json();
 
     const uri = process.env.MONGO_URI || process.env.MONGODB_URI;
@@ -20,10 +20,10 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 
     // Try matching by string id first (since seed might have inserted strings)
     // and fallback to ObjectId if needed.
-    const query = { $or: [{ _id: id }] };
+    const query: any = { $or: [{ _id: id }] };
     try {
       if (ObjectId.isValid(id)) {
-        query.$or.push({ _id: new ObjectId(id) as any });
+        query.$or.push({ _id: new ObjectId(id) });
       }
     } catch(e) {}
 
