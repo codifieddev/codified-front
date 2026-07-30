@@ -1,10 +1,11 @@
 'use client';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { Mail, MessageSquare, Globe, ArrowRight, ShieldCheck, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, MessageSquare, Globe, ArrowRight, ShieldCheck, CheckCircle, AlertCircle, Loader2, Paperclip } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 import EditableText from '@/components/shared/EditableText';
 import { saveField } from '@/lib/editorUtils';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const t = (value: any, fallback = '') => {
   if (!value) return fallback;
@@ -17,7 +18,12 @@ export default function ContactHeroSection() {
   const currentPages = useAppSelector((state) => state.pages.currentPages);
   const isEditable = useAppSelector((state) => state.pages.isEditablePage);
 
-  const [formData, setFormData] = useState({ name: '', email: '', requirement: 'AI / LLM Integration', message: '' });
+
+  
+  const [captchaValue, setcaptchaValue] =useState<string | null>(null)
+
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', requirement: 'AI / LLM Integration', message: '' });
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -29,15 +35,25 @@ export default function ContactHeroSection() {
     setStatus('loading');
     setErrorMsg('');
     try {
+      const submitData = new FormData();
+      submitData.append('name', formData.name);
+      submitData.append('email', formData.email);
+      submitData.append('phone', formData.phone);
+      submitData.append('requirement', formData.requirement);
+      submitData.append('message', formData.message);
+      if (resumeFile) {
+        submitData.append('resume', resumeFile);
+      }
+
       const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: submitData,
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Something went wrong.');
       setStatus('success');
-      setFormData({ name: '', email: '', requirement: 'AI / LLM Integration', message: '' });
+      setFormData({ name: '', email: '', phone: '', requirement: 'AI / LLM Integration', message: '' });
+      setResumeFile(null);
     } catch (err: any) {
       setStatus('error');
       setErrorMsg(err.message || 'Failed to send. Please try again.');
@@ -207,7 +223,7 @@ export default function ContactHeroSection() {
                   </button>
                 </div>
               ) : (
-                <form className="grid gap-6" onSubmit={handleSubmit}>
+                <form className="grid gap-3" onSubmit={handleSubmit}>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="form-group">
                       <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', opacity: 0.5, marginBottom: '10px' }}>Name *</label>
@@ -233,21 +249,34 @@ export default function ContactHeroSection() {
                     </div>
                   </div>
 
-                  <div className="form-group">
-                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', opacity: 0.5, marginBottom: '10px' }}>Requirement</label>
-                    <select
-                      name="requirement" value={formData.requirement} onChange={handleChange}
-                      style={{
-                        width: '100%', background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-                        padding: '16px 20px', borderRadius: '12px', color: '#fff', outline: 'none', appearance: 'none',
-                      }}
-                    >
-                      <option style={{ background: '#070b18', color: '#fff' }}>AI / LLM Integration</option>
-                      <option style={{ background: '#070b18', color: '#fff' }}>Enterprise Web Scaling</option>
-                      <option style={{ background: '#070b18', color: '#fff' }}>UI/UX Design Systems</option>
-                      <option style={{ background: '#070b18', color: '#fff' }}>Full-Stack Audit</option>
-                      <option style={{ background: '#070b18', color: '#fff' }}>Other / Not Specified</option>
-                    </select>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="form-group">
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', opacity: 0.5, marginBottom: '10px' }}>Phone</label>
+                      <input
+                        type="tel" name="phone" value={formData.phone} onChange={handleChange}
+                        placeholder="+1 234 567 8900"
+                        style={{
+                          width: '100%', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--line-strong)',
+                          padding: '16px 20px', borderRadius: '12px', color: '#fff', outline: 'none',
+                        }} className="focus:border-cyan-500/50 transition-colors"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', opacity: 0.5, marginBottom: '10px' }}>Requirement</label>
+                      <select
+                        name="requirement" value={formData.requirement} onChange={handleChange}
+                        style={{
+                          width: '100%', background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
+                          padding: '16px 20px', borderRadius: '12px', color: '#fff', outline: 'none', appearance: 'none',
+                        }}
+                      >
+                        <option style={{ background: '#070b18', color: '#fff' }}>AI / LLM Integration</option>
+                        <option style={{ background: '#070b18', color: '#fff' }}>Enterprise Web Scaling</option>
+                        <option style={{ background: '#070b18', color: '#fff' }}>UI/UX Design Systems</option>
+                        <option style={{ background: '#070b18', color: '#fff' }}>Full-Stack Audit</option>
+                        <option style={{ background: '#070b18', color: '#fff' }}>Other / Not Specified</option>
+                      </select>
+                    </div>
                   </div>
 
                   <div className="form-group">
@@ -261,6 +290,60 @@ export default function ContactHeroSection() {
                       }}
                     />
                   </div>
+
+                  <div className="form-group" style={{ 
+                    background: 'rgba(255,255,255,0.03)', 
+                    border: '1px solid var(--line-strong)',
+                    padding: '20px 24px', 
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '16px',
+                    flexWrap: 'wrap'
+                  }}>
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: '15px', color: '#fff' }}>Upload Resume</div>
+                      <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', marginTop: '4px' }}>Maximum 5MB</div>
+                    </div>
+                    <label style={{
+                      display: 'flex', alignItems: 'center', gap: '8px',
+                      padding: '12px 24px',
+                      border: '1px dashed var(--line-strong)',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      color: '#fff',
+                      fontSize: '14px',
+                      background: 'rgba(255,255,255,0.02)',
+                      transition: 'border-color 0.2s',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--cyan)'}
+                    onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--line-strong)'}
+                    >
+                      <Paperclip size={16} />
+                      <span style={{ maxWidth: '150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {resumeFile ? resumeFile.name : 'Attachment'}
+                      </span>
+                      <input
+                        type="file"
+                        accept=".pdf,.doc,.docx"
+                        onChange={(e) => {
+                          if (e.target.files && e.target.files[0]) {
+                            setResumeFile(e.target.files[0]);
+                          } else {
+                            setResumeFile(null);
+                          }
+                        }}
+                        style={{ display: 'none' }}
+                      />
+                    </label>
+                  </div>
+
+                  <ReCAPTCHA
+                    sitekey="6LflxGwtAAAAAG5sudv-bBTfS6H1RJM5jjP9Otwa"
+                    theme="dark"
+                    onChange={(value: string | null) => setcaptchaValue(value)}
+                  />
 
                   {/* Error message */}
                   {status === 'error' && (
@@ -277,7 +360,7 @@ export default function ContactHeroSection() {
 
                   <button
                     type="submit"
-                    disabled={status === 'loading'}
+                    disabled={status === 'loading' || !captchaValue}
                     className="btn"
                     style={{
                       width: '100%', justifyContent: 'center', padding: '18px',
