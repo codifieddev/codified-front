@@ -288,7 +288,7 @@ export default function Footer() {
                     { label: 'AI Agent',          href: '/services/ai-agent' },
                     { label: 'CMS Development',   href: '/services/cms-development' },
                     { label: 'ERP & CRM',         href: '/services/erp-crm' },
-                    { label: 'iOS Development',   href: '/services/mobile-app-development' },
+                    { label: 'iOS Development',   href: '/services/ios-development' },
                     { label: 'Paid Marketing',    href: '/services/paid-marketing' },
                     { label: 'Analytics',         href: '/services/analytics-reporting' },
                   ].map(({ label, href }) => (

@@ -292,12 +292,7 @@ export default function Technologies() {
     >
       <div className="inner">
         {/* inline grid ensures column layout regardless of CSS specificity */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.2fr)',
-          gap: '60px',
-          alignItems: 'center',
-        }}>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           {/* ── Left: text ── */}
           <div>
@@ -333,8 +328,8 @@ export default function Technologies() {
             />
 
             <div
-              className="core-spec"
-              style={{ gridTemplateColumns: '1fr 1fr 1fr', marginTop: '32px' }}
+              className="core-spec grid grid-cols-2 sm:grid-cols-3 gap-4"
+              style={{ marginTop: '32px' }}
             >
               {content.map((item: any, idx: number) => (
                 <div className="spec-cell" key={item.id ?? idx}>

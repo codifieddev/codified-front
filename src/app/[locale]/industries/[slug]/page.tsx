@@ -64,7 +64,7 @@ export default async function IndustryPage({ params }: Props) {
                 <span className="label" style={{ margin: 0 }}>VERTICAL / 0{Object.keys(industriesData).indexOf(slug) + 1}</span>
                 <span style={{ width: '40px', height: '1px', background: 'var(--cyan)' }}></span>
               </div>
-              <h1 className="display" style={{ fontSize: 'clamp(56px, 10vw, 110px)', lineHeight: 0.85, letterSpacing: '-0.05em' }}>
+              <h1 className="display" style={{ fontSize: 'clamp(56px, 10vw, 110px)', lineHeight: 1.1, letterSpacing: '-0.05em' }}>
                 {industry.title.split(' ').map((word, i) => (
                   <span key={i} style={{ display: 'inline-block' }}>
                     {word === '&' ? <span className="grad-text" style={{ fontStyle: 'italic' }}>&</span> : word}{' '}
@@ -102,7 +102,7 @@ export default async function IndustryPage({ params }: Props) {
         </section>
 
         {/* ── CHALLENGE & AUDIT ── */}
-        <section className="section" id="overview" data-mood="data" style={{ padding: '50px 0' }}>
+        <section className="section" id="overview" data-mood="data" style={{ padding: '50px 25px' }}>
           <div className="inner">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="reveal">
@@ -151,7 +151,7 @@ export default async function IndustryPage({ params }: Props) {
         </section>
 
         {/* ── NEW SECTION 1: TRUST & COMPLIANCE ── */}
-        <section className='max-w-7xl mx-auto'  id="compliance" data-mood="core" style={{ padding: '100px 0', borderTop: '1px solid var(--line)' }}>
+        <section className='max-w-7xl mx-auto'  id="compliance" data-mood="core" style={{ padding: '100px 25px', borderTop: '1px solid var(--line)' }}>
           <div className="inner">
             <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 text-center">
               {[
@@ -171,7 +171,7 @@ export default async function IndustryPage({ params }: Props) {
         </section>
 
         {/* ── REDESIGNED GLOBAL INFRASTRUCTURE ── */}
-        <section className="section" id="infra" data-mood="data" style={{ padding: '50px 0', overflow: 'hidden' }}>
+        <section className="section" id="infra" data-mood="data" style={{ padding: '50px 25px', overflow: 'hidden' }}>
           <div className="inner">
             <div className="grid lg:grid-cols-12 gap-16 items-center">
               <div className="lg:col-span-7 reveal">
@@ -223,7 +223,7 @@ export default async function IndustryPage({ params }: Props) {
         </section>
 
         {/* ── STRATEGIC SOLUTIONS (Refined) ── */}
-        <section className="section" id="solutions" data-mood="signal" style={{ padding: '50px 0', borderTop: '1px solid var(--line)' }}>
+        <section className="section" id="solutions" data-mood="signal" style={{ padding: '50px 25px', borderTop: '1px solid var(--line)' }}>
           <div className="inner">
             <div style={{ textAlign: 'center', marginBottom: '100px' }}>
               <span className="label" style={{ justifyContent: 'center' }}>STRATEGIC SOLUTIONS</span>
@@ -243,7 +243,7 @@ export default async function IndustryPage({ params }: Props) {
         </section>
 
         {/* ── ROADMAP SECTION ── */}
-        <section className="section" id="roadmap" data-mood="engine" style={{ padding: '50px 0', background: 'rgba(0,0,0,0.4)', borderTop: '1px solid var(--line)' }}>
+        <section className="section" id="roadmap" data-mood="engine" style={{ padding: '50px 25px', background: 'rgba(0,0,0,0.4)', borderTop: '1px solid var(--line)' }}>
           <div className="inner">
             <div style={{ marginBottom: '100px' }}>
               <span className="label">TRANSFORMATION ROADMAP</span>
@@ -267,7 +267,7 @@ export default async function IndustryPage({ params }: Props) {
         </section>
 
         {/* ── NEW SECTION 3: EXPERT CTA ── */}
-        <section className="section" id="expert-cta" data-mood="signal" style={{ padding: '50px 0', borderTop: '1px solid var(--line)' }}>
+        <section className="section" id="expert-cta" data-mood="signal" style={{ padding: '50px 25px', borderTop: '1px solid var(--line)' }}>
           <div className="inner">
             <div className="reveal" style={{
               padding: '40px', borderRadius: '30px',
@@ -279,15 +279,15 @@ export default async function IndustryPage({ params }: Props) {
               <div className="grid lg:grid-cols-2 gap-20 items-center relative z-10">
                 <div style={{ textAlign: 'left' }}>
                   <span className="label">EXPERT CONSULTATION</span>
-                  <h2 className="display" style={{ fontSize: '56px', marginTop: '24px', lineHeight: 1 }}>
+                  <h2 className="display" style={{ fontSize: 'clamp(28px, 4vw, 52px)', lineHeight: 1.1, letterSpacing: '-0.02em', marginTop: '24px' }}>
                     Talk to our <span className="grad-text">Lead Architects.</span>
                   </h2>
                   <p className="lede" style={{ marginTop: '32px', marginBottom: '48px', opacity: 0.8 }}>
                     Skip the sales pitch. Book a technical deep-dive with our senior engineering team to discuss your specific industrial requirements.
                   </p>
-                  <div style={{ display: 'flex', gap: '20px' }}>
-                    <a href="/contact" className="btn btn-primary" style={{ padding: '20px 50px', fontSize: '16px' }}>Schedule Call</a>
-                    <a href="/contact" className="btn btn-outline" style={{ padding: '20px 50px', fontSize: '16px' }}>Download Whitepaper</a>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+                    <a href="/contact" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '15px', flex: '1 1 auto', textAlign: 'center', justifyContent: 'center' }}>Schedule Call</a>
+                    <a href="/contact" className="btn btn-outline" style={{ padding: '16px 32px', fontSize: '15px', flex: '1 1 auto', textAlign: 'center', justifyContent: 'center' }}>Download Whitepaper</a>
                   </div>
                 </div>
                 <div className="hidden lg:block">
