@@ -3,8 +3,22 @@ import CinematicInit from '@/components/providers/CinematicInit/CinematicInit';
 import Navigation from '@/components/layout/Navigation/Navigation';
 import Footer from '@/components/layout/Footer/Footer';
 import TechStack from '@/components/shared/TechStack/TechStack';
+import { Layers, Cpu, Zap, Box, Hexagon, Terminal, Code2, Command, Sparkles, Fingerprint } from 'lucide-react';
 
 export default function ServiceDetailPage({ service, slug }: { service: any, slug: string }) {
+  const capabilityIcons = [
+    <Hexagon size={26} strokeWidth={1.5} key="1" />,
+    <Layers size={26} strokeWidth={1.5} key="2" />,
+    <Command size={26} strokeWidth={1.5} key="3" />,
+    <Cpu size={26} strokeWidth={1.5} key="4" />,
+    <Sparkles size={26} strokeWidth={1.5} key="5" />,
+    <Fingerprint size={26} strokeWidth={1.5} key="6" />,
+    <Code2 size={26} strokeWidth={1.5} key="7" />,
+    <Zap size={26} strokeWidth={1.5} key="8" />,
+    <Terminal size={26} strokeWidth={1.5} key="9" />,
+    <Box size={26} strokeWidth={1.5} key="10" />,
+  ];
+
   const techs = [
     { name: 'Next.js', color: '#fff' },
     { name: 'TypeScript', color: '#3178C6' },
@@ -63,8 +77,8 @@ export default function ServiceDetailPage({ service, slug }: { service: any, slu
               {service.features.map((feat: any, i: number) => (
                 <div key={i} className="glow-card relative group">
                   <span className="corner tl"></span><span className="corner tr"></span><span className="corner bl"></span><span className="corner br"></span>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--cyan)', marginBottom: '20px', letterSpacing: '0.2em' }}>
-                    [ CAP_0{i+1} ]
+                  <div style={{ color: 'var(--cyan)', marginBottom: '20px' }}>
+                    {capabilityIcons[i % capabilityIcons.length]}
                   </div>
                   <h3 className="display" style={{ fontSize: '24px', marginBottom: '14px' }}>{feat.title}</h3>
                   <p style={{ color: 'var(--text-soft)', fontSize: '15px', lineHeight: 1.6 }}>{feat.desc}</p>
