@@ -3,8 +3,13 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { name, email, requirement, message } = body;
+    const data = await req.formData();
+    const name = data.get('name') as string;
+    const email = data.get('email') as string;
+    const phone = data.get('phone') as string;
+    const requirement = data.get('requirement') as string;
+    const message = data.get('message') as string;
+    const resume = data.get('resume') as File | null;
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: 'Name, email and message are required.' }, { status: 400 });
@@ -23,6 +28,16 @@ export async function POST(req: NextRequest) {
 
     const recipients = process.env.CONTACT_RECIPIENTS || 'hello@codifiedweb.com';
     const from = process.env.SMTP_FROM || 'Codified Web <hello@codifiedweb.com>';
+
+    const attachments = [];
+    if (resume) {
+      const buffer = Buffer.from(await resume.arrayBuffer());
+      attachments.push({
+        filename: resume.name,
+        content: buffer,
+        contentType: resume.type,
+      });
+    }
 
     const mailOptions = {
       from,
@@ -54,6 +69,10 @@ export async function POST(req: NextRequest) {
                 <td style="padding: 10px 0; color: #111; font-size: 14px;"><a href="mailto:${email}" style="color: #1DC3F3;">${email}</a></td>
               </tr>
               <tr style="border-top: 1px solid #f3f4f6;">
+                <td style="padding: 10px 0; color: #6b7280; font-size: 13px; vertical-align: top;">Phone</td>
+                <td style="padding: 10px 0; color: #111; font-size: 14px;">${phone || 'Not specified'}</td>
+              </tr>
+              <tr style="border-top: 1px solid #f3f4f6;">
                 <td style="padding: 10px 0; color: #6b7280; font-size: 13px; vertical-align: top;">Requirement</td>
                 <td style="padding: 10px 0; color: #111; font-size: 14px;">${requirement || 'Not specified'}</td>
               </tr>
@@ -73,6 +92,7 @@ export async function POST(req: NextRequest) {
           </p>
         </div>
       `,
+      attachments,
     };
 
     await new Promise((resolve, reject) => {
