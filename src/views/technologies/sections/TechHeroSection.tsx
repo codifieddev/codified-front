@@ -12,13 +12,11 @@ const techBadges = [
 
 export default function TechHeroSection() {
   return (
-    <section className="section" id="tech-hero" data-mood="signal" style={{ paddingTop: '160px' }}>
-      <div className="inner">
+    <section className="section pt-[100px] lg:pt-[160px]" id="tech-hero" data-mood="signal">
+      <div className="inner px-6 lg:px-0">
 
         {/* Two-column layout matching the site's standard hero pattern */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: '60px', alignItems: 'center' }}
-          className="lg:!grid-cols-2"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] items-center" style={{ gap: '60px' }}>
           {/* ── Left: Copy ── */}
           <div>
             <span className="label">
@@ -33,16 +31,16 @@ export default function TechHeroSection() {
               We engineer high-performance platforms using modern, battle-tested technologies — delivering applications that are secure, scalable, and built to handle millions of users.
             </p>
 
-            <div className="ctas reveal" style={{ marginTop: '32px' }}>
+            <div className="ctas reveal" style={{ marginTop: '32px', display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
               <a className="btn" href="#tech-stack">Explore Stack <span className="arr">→</span></a>
               <a className="btn ghost" href="/contact">Hire Developers</a>
             </div>
 
             {/* Meta pills */}
-            <div className="meta reveal" style={{ marginTop: '32px' }}>
-              <span><i /> SOC 2 Compliant</span>
-              <span><i /> 99.99% Uptime SLA</span>
-              <span><i /> Sub-50ms APIs</span>
+            <div className="meta reveal" style={{ marginTop: '32px', display: 'flex', flexWrap: 'wrap', gap: '16px', color: 'var(--text-mute)', fontSize: '13px' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px', whiteSpace: 'nowrap' }}><i style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--cyan)' }} /> SOC 2 Compliant</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px', whiteSpace: 'nowrap' }}><i style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--cyan)' }} /> 99.99% Uptime SLA</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px', whiteSpace: 'nowrap' }}><i style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--cyan)' }} /> Sub-50ms APIs</span>
             </div>
 
             {/* Stats */}

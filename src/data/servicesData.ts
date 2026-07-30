@@ -283,6 +283,36 @@ export const servicesData: Record<string, ServiceContent> = {
     process: [],
     mood: "signal"
   },
+  "ios-development": {
+    slug: "ios-development",
+    title: "iOS Development",
+    tagline: "Native Apple Experiences",
+    description: "High-performance iOS applications built with Swift and SwiftUI. We leverage the latest Apple frameworks to build apps that are fast, secure, and intuitive for iPhone and iPad.",
+    heroImage: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
+    features: [
+      { title: "Swift & SwiftUI", desc: "Native apps built with modern Swift paradigms." },
+      { title: "App Store Optimization", desc: "Optimizing your app to rank high on the Apple App Store." },
+      { title: "Apple Ecosystem", desc: "Seamless integration across iOS, iPadOS, and watchOS." }
+    ],
+    techStack: { title: "iOS Stack", desc: "Swift, SwiftUI, Objective-C, CoreData." },
+    process: [],
+    mood: "signal"
+  },
+  "android-development": {
+    slug: "android-development",
+    title: "Android Development",
+    tagline: "Native Google Experiences",
+    description: "Robust and scalable Android applications using Kotlin and Jetpack Compose. We design for the diverse Android ecosystem ensuring top-tier performance on all devices.",
+    heroImage: "https://images.unsplash.com/photo-1607252656733-fd745505fdbf?auto=format&fit=crop&w=800&q=80",
+    features: [
+      { title: "Kotlin & Compose", desc: "Modern Android apps using Kotlin and declarative UI." },
+      { title: "Play Store Optimization", desc: "Strategies for high visibility and downloads." },
+      { title: "Device Compatibility", desc: "Ensuring smooth performance across thousands of Android devices." }
+    ],
+    techStack: { title: "Android Stack", desc: "Kotlin, Java, Jetpack Compose, Room." },
+    process: [],
+    mood: "signal"
+  },
   "seo-smm-amo-ppc": {
     slug: "seo-smm-amo-ppc",
     title: "SEO, SMM & PPC",

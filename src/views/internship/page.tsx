@@ -3,7 +3,8 @@ import { useState } from 'react';
 import CinematicInit from '@/components/providers/CinematicInit/CinematicInit';
 import Navigation from '@/components/layout/Navigation/Navigation';
 import Footer from '@/components/layout/Footer/Footer';
-import { ArrowRight, CheckCircle, AlertCircle, Loader2, Code2, Brain, Smartphone, PenTool, TrendingUp, Megaphone, Award, FolderGit2, Users, Banknote, BadgeCheck, Globe2 } from 'lucide-react';
+import { ArrowRight, CheckCircle, AlertCircle, Loader2, Code2, Brain, Smartphone, PenTool, TrendingUp, Megaphone, Award, FolderGit2, Users, Banknote, BadgeCheck, Globe2, Paperclip } from 'lucide-react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const ROLES = [
   { icon: <Brain size={22} />, title: 'AI / ML Engineering', desc: 'Work on LLM pipelines, computer vision and real-world AI product integrations.', tag: 'AI · Python · LangChain', color: 'var(--primary)' },
@@ -34,6 +35,8 @@ export default function InternshipPage() {
   const [form, setForm] = useState({ name: '', email: '', role: 'AI / ML Engineering', college: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -43,20 +46,22 @@ export default function InternshipPage() {
     setStatus('loading');
     setErrorMsg('');
     try {
+      const submitData = new FormData();
+      submitData.append('name', form.name);
+      submitData.append('email', form.email);
+      submitData.append('requirement', `Internship Application — ${form.role}`);
+      submitData.append('message', `College/University: ${form.college}\n\n${form.message}`);
+      if (resumeFile) submitData.append('resume', resumeFile);
+
       const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          requirement: `Internship Application — ${form.role}`,
-          message: `College/University: ${form.college}\n\n${form.message}`,
-        }),
+        body: submitData,
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Something went wrong.');
       setStatus('success');
       setForm({ name: '', email: '', role: 'AI / ML Engineering', college: '', message: '' });
+      setResumeFile(null);
     } catch (err: any) {
       setStatus('error');
       setErrorMsg(err.message || 'Failed to send. Please try again.');
@@ -279,14 +284,37 @@ export default function InternshipPage() {
                           style={{ width: '100%', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--line-strong)', padding: '14px 18px', borderRadius: '10px', color: '#fff', outline: 'none', resize: 'none', fontSize: '14px' }} />
                       </div>
 
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
+                        <div>
+                          <div style={{ fontWeight: 600, fontSize: '15px', color: '#fff' }}>Upload Resume</div>
+                          <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', marginTop: '4px' }}>Maximum 5MB</div>
+                        </div>
+                        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', border: '1px dashed var(--line-strong)', borderRadius: '8px', cursor: 'pointer', color: '#fff', fontSize: '14px', background: 'rgba(255,255,255,0.02)', transition: 'border-color 0.2s' }}
+                          onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--cyan)'}
+                          onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--line-strong)'}
+                        >
+                          <Paperclip size={16} />
+                          <span style={{ maxWidth: '150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {resumeFile ? resumeFile.name : 'Attachment'}
+                          </span>
+                          <input type="file" accept=".pdf,.doc,.docx" onChange={(e) => setResumeFile(e.target.files && e.target.files[0] ? e.target.files[0] : null)} style={{ display: 'none' }} />
+                        </label>
+                      </div>
+
+                      <ReCAPTCHA
+                        sitekey="6LflxGwtAAAAAG5sudv-bBTfS6H1RJM5jjP9Otwa"
+                        theme="dark"
+                        onChange={(value: string | null) => setCaptchaValue(value)}
+                      />
+
                       {status === 'error' && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 16px', borderRadius: '10px', background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.3)', color: '#fca5a5', fontSize: '13px' }}>
                           <AlertCircle size={15} style={{ flexShrink: 0 }} /> {errorMsg}
                         </div>
                       )}
 
-                      <button type="submit" disabled={status === 'loading'}
-                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '16px', borderRadius: '999px', background: status === 'loading' ? 'color-mix(in srgb, var(--primary) 50%, transparent)' : 'var(--cyan)', color: '#04060d', fontWeight: 700, fontSize: '15px', cursor: status === 'loading' ? 'not-allowed' : 'pointer', border: 'none', marginTop: '4px' }}>
+                      <button type="submit" disabled={status === 'loading' || !captchaValue}
+                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '16px', borderRadius: '999px', background: status === 'loading' || !captchaValue ? 'color-mix(in srgb, var(--primary) 50%, transparent)' : 'var(--cyan)', color: '#04060d', fontWeight: 700, fontSize: '15px', cursor: status === 'loading' || !captchaValue ? 'not-allowed' : 'pointer', border: 'none', marginTop: '4px' }}>
                         {status === 'loading' ? <><Loader2 size={18} style={{ animation: 'spin 1s linear infinite' }} /> Submitting...</> : <>Submit Application <ArrowRight size={18} /></>}
                       </button>
                     </form>

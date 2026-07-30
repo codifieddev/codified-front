@@ -25,7 +25,7 @@ export default function ServiceDetailPage({ service, slug }: { service: any, slu
             <div className="grid lg:grid-cols-2 gap-12 items-stretch">
               <div className="copy reveal py-8">
                 <span className="label">
-                  <span className="num">S_{slug.toUpperCase()} ·</span> {service.title}
+                  <span className="num hidden sm:inline">S_{slug.toUpperCase()} ·</span> {service.title}
                 </span>
                 <h1 className="display" style={{ fontSize: 'clamp(42px, 5.5vw, 84px)', marginTop: '24px', lineHeight: 1.05, letterSpacing: '-0.03em' }}>
                   {service.tagline.split(' ').map((word: string, i: number) => (

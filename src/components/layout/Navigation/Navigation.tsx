@@ -73,8 +73,8 @@ export default function Navigation() {
           name: "Mobile Apps",
           items: [
             { title: "Mobile App Dev", desc: "iOS & Android solutions.", icon: "MB", slug: "mobile-app-development" },
-            { title: "iOS Development", desc: "Native Apple experiences.", icon: "AP", slug: "mobile-app-development" },
-            { title: "Android Development", desc: "Native Google experiences.", icon: "AD", slug: "mobile-app-development" },
+            { title: "iOS Development", desc: "Native Apple experiences.", icon: "AP", slug: "ios-development" },
+            { title: "Android Development", desc: "Native Google experiences.", icon: "AD", slug: "android-development" },
           ]
         },
         {
@@ -286,7 +286,7 @@ export default function Navigation() {
         }
       `}} />
 
-      <div className={`mobile-drawer ${menuOpen ? 'open' : ''}`} style={{ maxHeight: 'calc(100vh - 57px)', overflowY: 'auto' }}>
+      <div className={`mobile-drawer ${menuOpen ? 'open' : ''}`} style={{ maxHeight: 'calc(100vh - 77px)', overflowY: 'auto' }}>
         
         {/* About Submenu */}
         <div className="mobile-item">
