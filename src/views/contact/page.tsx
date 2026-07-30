@@ -34,7 +34,7 @@ export default function ContactPage({ locale }: { locale: string }) {
 
         <ContactHeroSection />
         <TechnicalCapabilitiesSection />
-        <DeploymentSequenceSection />
+        {/* <DeploymentSequenceSection /> */}
         <TechnicalFAQSection />
       </main>
 
