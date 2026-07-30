@@ -262,7 +262,7 @@ export default function ContactHeroSection() {
                       />
                     </div>
                     <div className="form-group">
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', opacity: 0.5, marginBottom: '10px' }}>Requirement</label>
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', opacity: 0.5, marginBottom: '10px' }}>Purpose</label>
                       <select
                         name="requirement" value={formData.requirement} onChange={handleChange}
                         style={{

@@ -73,13 +73,19 @@ export async function POST(req: NextRequest) {
                 <td style="padding: 10px 0; color: #111; font-size: 14px;">${phone || 'Not specified'}</td>
               </tr>
               <tr style="border-top: 1px solid #f3f4f6;">
-                <td style="padding: 10px 0; color: #6b7280; font-size: 13px; vertical-align: top;">Requirement</td>
+                <td style="padding: 10px 0; color: #6b7280; font-size: 13px; vertical-align: top;">Purpose</td>
                 <td style="padding: 10px 0; color: #111; font-size: 14px;">${requirement || 'Not specified'}</td>
               </tr>
               <tr style="border-top: 1px solid #f3f4f6;">
                 <td style="padding: 10px 0; color: #6b7280; font-size: 13px; vertical-align: top;">Message</td>
                 <td style="padding: 10px 0; color: #111; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${message}</td>
               </tr>
+              ${resume ? `
+              <tr style="border-top: 1px solid #f3f4f6;">
+                <td style="padding: 10px 0; color: #6b7280; font-size: 13px; vertical-align: top;">Attachment</td>
+                <td style="padding: 10px 0; color: #111; font-size: 14px;"><strong>${resume.name}</strong> (Attached to email)</td>
+              </tr>
+              ` : ''}
             </table>
             <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb; text-align: center;">
               <a href="mailto:${email}" style="display: inline-block; background: #1DC3F3; color: #04060d; padding: 12px 28px; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 14px;">

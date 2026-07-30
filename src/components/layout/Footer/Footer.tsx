@@ -46,7 +46,7 @@ export default function Footer() {
         background: 'radial-gradient(ellipse at center, rgba(154,123,255,0.05) 0%, transparent 70%)',
       }} />
 
-      <div className="relative px-12 mx-auto pt-16">
+      <div className="relative px-6 mx-auto pt-16 md:px-12">
 
         {/* ── AI CTA Banner ── */}
         <div style={{
@@ -146,9 +146,7 @@ export default function Footer() {
         </div>
 
         {/* ── Live Stats Row ── */}
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginBottom: '60px',
-        }}>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-[60px]">
           {STATS.map((s) => (
             <div key={s.label} style={{
               padding: '18px 20px', borderRadius: '12px',
