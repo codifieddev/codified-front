@@ -76,7 +76,7 @@ export default function ServiceDetailPage({ service, slug }: { service: any, slu
 
         <section className="section" id="tech-stack" data-mood="core">
           <div className="inner">
-            <div className="card reveal" style={{ padding: '80px 60px', overflow: 'hidden', position: 'relative' }}>
+            <div className="card reveal tech-stack-card" style={{ padding: '80px 60px', overflow: 'hidden', position: 'relative' }}>
               <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
                 <div>
                   <span className="label">TECHNICAL BLUEPRINT</span>

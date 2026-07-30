@@ -261,8 +261,8 @@
       "adminTitle": "Technical FAQ",
       "props": {
         "label": {
-          "en": "TECHNICAL_FAQ",
-          "hi": "TECHNICAL_FAQ"
+          "en": "TECHNICAL FAQ",
+          "hi": "TECHNICAL FAQ"
         },
         "heading": {
           "en": "Common <span class=\"grad-text\">Queries.</span>",

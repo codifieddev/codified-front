@@ -1957,6 +1957,10 @@ h3.display {
 ══════════════════════════════════════════════ */
 @media (max-width: 768px) {
 
+
+  .tech-stack-card{
+        padding: 80px 40px !important;
+  }
   /* ── Navigation ── */
   .nav {
     padding: 11px 16px;
