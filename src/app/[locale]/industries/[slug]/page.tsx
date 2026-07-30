@@ -120,7 +120,7 @@ export default async function IndustryPage({ params }: Props) {
 
               <div className="reveal">
                 <div style={{
-                  padding: '60px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--line-strong)',
+                  padding: '60px 25px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--line-strong)',
                   borderRadius: '40px', backdropFilter: 'blur(30px)', position: 'relative', overflow: 'hidden'
                 }}>
                   <div style={{ position: 'absolute', top: 0, right: 0, width: '200px', height: '200px', background: 'var(--cyan)', opacity: 0.05, filter: 'blur(80px)' }}></div>
