@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import AboutPage from '@/views/about/page';
 
 export const metadata: Metadata = {
-  title: 'About Us | Codified Web Solutions',
-  description: 'At Codified Web Solutions, we are a collective of developers, designers, and strategists dedicated to building world-class digital products.',
+  title: 'About Us: Engineering Digital Solutions | Codified Web',
+  description:
+    'Learn more about us at Codified Web Solutions — our expert team of engineers, designers, and strategists crafting next-generation digital products and systems.',
 };
 
 export default async function AppAboutPage({ params }: { params: Promise<{ locale: string }> }) {
