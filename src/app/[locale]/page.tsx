@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import HomePage from '@/views/home/page';
 
 export const metadata: Metadata = {
-  title: 'Codified Web Solutions | AI · Web · Mobile Development',
+  title: 'Codified Web Solutions | AI, Web & Mobile Development',
   description:
-    'From LLM integration to production web apps — Codified delivers AI-powered digital solutions.',
+    'Codified Web Solutions delivers scalable digital infrastructure, custom AI models, full-stack web applications, and enterprise software engineered for growth.',
 };
 
 export default async function AppHomePage({ params }: { params: Promise<{ locale: string }> }) {

@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import CaseStudiesPage from '@/views/case-studies/page';
 
 export const metadata: Metadata = {
-  title: 'Case Studies | Codified Web Solutions',
-  description: 'Explore our portfolio of scalable software, custom AI models, and robust cloud infrastructure deployments.',
+  title: 'Case Studies & Client Success Stories | Codified',
+  description:
+    'Explore our case studies featuring custom AI models, enterprise web apps, and robust cloud infrastructure deployments built by Codified Web Solutions.',
 };
 
 export default async function AppCaseStudiesPage({ params }: { params: Promise<{ locale: string }> }) {
