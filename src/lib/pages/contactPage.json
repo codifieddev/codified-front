@@ -312,8 +312,8 @@
           "type": "item",
           "props": {
             "q": {
-              "en": "Can we hire for dedicated long-term teams?",
-              "hi": "Can we hire for dedicated long-term teams?"
+              "en": "Can we engage dedicated long-term engineering teams?",
+              "hi": "Can we engage dedicated long-term engineering teams?"
             },
             "a": {
               "en": "Absolutely. We specialize in building dedicated pods for scaling enterprises and startups.",

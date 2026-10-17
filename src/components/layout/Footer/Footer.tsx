@@ -245,10 +245,9 @@ export default function Footer() {
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   {[
                     { label: 'About Us',         href: '/about' },
-                    { label: 'Hire Developers',  href: '/hire-developers' },
                     { label: 'Technologies',     href: '/technologies' },
-                    { label: 'Internship',       href: '/internship' },
-                    { label: 'Careers',          href: '/careers' },
+                    { label: 'Case Studies',     href: '/case-studies' },
+                    { label: 'Industries',       href: '/industries' },
                     { label: 'Contact',          href: '/contact' },
                   ].map(({ label, href }) => (
                     <li key={label}>

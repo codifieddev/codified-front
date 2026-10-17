@@ -1,6 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Page } from './pageType';
 import { createPageThunk, deletePageThunk, fetchFastApiPagesThunk, fetchPageBySlugThunk, fetchPagesThunk, savePageContentThunk, updatePageThunk } from './pageThunk';
+import homePageData from '@/lib/pages/homePage.json';
+import aboutPageData from '@/lib/pages/aboutPage.json';
+import servicesPageData from '@/lib/pages/servicesPage.json';
+import caseStudiesPageData from '@/lib/pages/caseStudiesPage.json';
+import contactPageData from '@/lib/pages/contactPage.json';
+import industriesPageData from '@/lib/pages/industriesPage.json';
+import technologiesPageData from '@/lib/pages/technologiesPage.json';
+
+const defaultPages: Page[] = [
+  { _id: 'home', id: 'home', ...homePageData } as any,
+  { _id: 'about', id: 'about', ...aboutPageData } as any,
+  { _id: 'services', id: 'services', ...servicesPageData } as any,
+  { _id: 'case-studies', id: 'case-studies', ...caseStudiesPageData } as any,
+  { _id: 'contact', id: 'contact', ...contactPageData } as any,
+  { _id: 'industries', id: 'industries', ...industriesPageData } as any,
+  { _id: 'technologies', id: 'technologies', ...technologiesPageData } as any,
+];
 
 interface PageState {
   allPages: Page[];
@@ -12,8 +29,8 @@ interface PageState {
 }
 
 const initialState: PageState = {
-  allPages: [],
-  currentPages: null,
+  allPages: defaultPages,
+  currentPages: defaultPages[0],
   isAllPageFetched: false,
   isError: false,
   isLoading: false,
@@ -64,17 +81,20 @@ const pagesSlice = createSlice({
       })
       .addCase(fetchPagesThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.allPages = action.payload;
-        state.isAllPageFetched = true;
-        const data=action.payload.find((page:Page)=>page.slug==="home")
-        if(data){
-          state.currentPages=data
+        if (action.payload && action.payload.length > 0) {
+          state.allPages = action.payload;
+          const currentSlug = state.currentPages?.slug || "home";
+          const data = action.payload.find((page: Page) => page.slug === currentSlug) || action.payload.find((page: Page) => page.slug === "home");
+          if (data) {
+            state.currentPages = data;
+          }
         }
-        
+        state.isAllPageFetched = true;
       })
       .addCase(fetchPagesThunk.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
+        state.isAllPageFetched = true;
       })
       //feetch all, page through fast Api calling
 // /api/cms/pages
@@ -84,16 +104,20 @@ const pagesSlice = createSlice({
        })
        .addCase(fetchFastApiPagesThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.allPages = action.payload;
-        state.isAllPageFetched = true;
-        const data=action.payload.find((page:Page)=>page.slug==="home")
-        if(data){
-          state.currentPages=data
+        if (action.payload && action.payload.length > 0) {
+          state.allPages = action.payload;
+          const currentSlug = state.currentPages?.slug || "home";
+          const data = action.payload.find((page: Page) => page.slug === currentSlug) || action.payload.find((page: Page) => page.slug === "home");
+          if (data) {
+            state.currentPages = data;
+          }
         }
+        state.isAllPageFetched = true;
        })
        .addCase(fetchFastApiPagesThunk.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
+        state.isAllPageFetched = true;
        }) 
       // Fetch single page
       .addCase(fetchPageBySlugThunk.pending, (state) => {

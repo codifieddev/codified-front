@@ -21,6 +21,19 @@ export default function GlobalLoader() {
     }
   }, [isAllPageFetched, isLoading]);
 
+  useEffect(() => {
+    // Safety fallback: Never keep loader stuck indefinitely
+    const fallbackTimer = setTimeout(() => {
+      setFade(true);
+      const timer = setTimeout(() => {
+        setShow(false);
+      }, 500);
+      return () => clearTimeout(timer);
+    }, 2500);
+
+    return () => clearTimeout(fallbackTimer);
+  }, []);
+
   if (!show) return null;
 
   return (

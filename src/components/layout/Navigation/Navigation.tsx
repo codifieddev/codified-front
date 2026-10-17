@@ -111,19 +111,19 @@ export default function Navigation() {
           }
         },
         {
-          name: "Hire Developers",
+          name: "Our Technologies",
           featured: {
-            title: "Scale Your Team",
-            desc: "Expert developers ready to integrate with your existing workflow.",
-            link: "/hire-developers"
+            title: "Technology Stack",
+            desc: "Modern engineering frameworks, cloud architecture and toolchains.",
+            link: "/technologies"
           }
         },
         {
-          name: "Careers",
+          name: "Contact Us",
           featured: {
-            title: "Join Our Team",
-            desc: "Explore open positions and build the future of digital innovation with us.",
-            link: "/careers"
+            title: "Work With Us",
+            desc: "Start a conversation to turn your technical vision into reality.",
+            link: "/contact"
           }
         }
       ]
@@ -296,8 +296,8 @@ export default function Navigation() {
           </div>
           <div className={`mobile-sub ${mobileExpanded === 'about' ? 'open' : ''}`}>
             <Link href="/about" onClick={closeMenu}>About Us</Link>
-            <Link href="/hire-developers" onClick={closeMenu}>Hire Developers</Link>
-            <Link href="/careers" onClick={closeMenu}>Careers</Link>
+            <Link href="/technologies" onClick={closeMenu}>Technologies</Link>
+            <Link href="/contact" onClick={closeMenu}>Contact</Link>
           </div>
         </div>
 
