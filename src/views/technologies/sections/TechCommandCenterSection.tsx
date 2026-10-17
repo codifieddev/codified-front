@@ -22,7 +22,7 @@ export default function TechCommandCenterSection() {
           <div className="cmd-footer" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.05)', padding: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <h3 style={{ fontSize: '24px', margin: '0 0 8px 0', color: '#fff' }}>Start Building</h3>
-              <p style={{ color: 'var(--text-soft)', margin: 0, fontSize: '14px' }}>Hire our expert developers to scale your platform.</p>
+              <p style={{ color: 'var(--text-soft)', margin: 0, fontSize: '14px' }}>Partner with our experts to scale your platform.</p>
             </div>
             <a href="/contact" className="btn">Get in Touch <span className="arr">→</span></a>
           </div>

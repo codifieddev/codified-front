@@ -33,7 +33,7 @@ export default function TechHeroSection() {
 
             <div className="ctas reveal" style={{ marginTop: '32px', display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
               <a className="btn" href="#tech-stack">Explore Stack <span className="arr">→</span></a>
-              <a className="btn ghost" href="/contact">Hire Developers</a>
+              <a className="btn ghost" href="/contact">Get in Touch</a>
             </div>
 
             {/* Meta pills */}

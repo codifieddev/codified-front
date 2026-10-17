@@ -30,7 +30,7 @@ export default function TechnicalFAQSection() {
     : [
         { id: 'faq-fb-1', props: { q: { en: 'How long does the initial audit take?' }, a: { en: 'Typically, our team provides a technical feedback loop within 24-48 hours of your submission. Deep-dive audits may take up to a week depending on system complexity.' } } },
         { id: 'faq-fb-2', props: { q: { en: 'Do you sign Mutual NDAs?' }, a: { en: 'Yes. All technical consultations are covered under a strictly enforced NDA to protect your IP and ensure complete confidentiality from day one.' } } },
-        { id: 'faq-fb-3', props: { q: { en: 'Can we hire for dedicated long-term teams?' }, a: { en: 'Absolutely. We specialize in building dedicated pods for scaling enterprises and startups. These teams integrate directly into your existing workflows.' } } },
+        { id: 'faq-fb-3', props: { q: { en: 'Can we engage dedicated long-term engineering teams?' }, a: { en: 'Absolutely. We specialize in building dedicated pods for scaling enterprises and startups. These teams integrate directly into your existing workflows.' } } },
         { id: 'faq-fb-4', props: { q: { en: 'What is your typical tech stack?' }, a: { en: 'We specialize in Next.js, React, Node.js, and Python for the core. We also handle complex AI integrations using OpenAI, Anthropic, and custom LLM deployments.' } } },
         { id: 'faq-fb-5', props: { q: { en: 'Do you offer post-launch support?' }, a: { en: 'Yes, we provide SLA-backed maintenance contracts, ongoing performance monitoring, and iterative feature development for all enterprise projects.' } } },
       ];
