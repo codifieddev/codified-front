@@ -30,6 +30,7 @@ export const loginUser = createAsyncThunk(
       });
       if (typeof window !== 'undefined') {
         localStorage.setItem('access_token', data.access_token);
+        localStorage.setItem('shared_data', data.access_token);
       }
       return data;
     } catch (err: any) {
@@ -55,6 +56,7 @@ const authSlice = createSlice({
       state.error = null;
       if (typeof window !== 'undefined') {
         localStorage.removeItem('access_token');
+        localStorage.removeItem('shared_data');
       }
     },
     clearError: (state) => {
