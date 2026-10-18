@@ -13,7 +13,7 @@ export async function fetcher<T>(url: string, options?: RequestInit): Promise<T>
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({}));
-    throw new Error(error.message || 'An error occurred while fetching data');
+    throw new Error(error.message || error.error || response.statusText || 'An error occurred while fetching data');
   }
 
   return response.json();

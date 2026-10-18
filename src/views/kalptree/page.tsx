@@ -30,8 +30,8 @@ export default function KalpTreePage({ locale = 'en' }: { locale?: string }) {
   const router = useRouter();
   const { isAuthenticated, authUser, loading, error } = useAppSelector((state) => state.auth);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('business@codified.com');
+  const [password, setPassword] = useState('1234567899');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
 
