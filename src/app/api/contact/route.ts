@@ -1,34 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { saveLead, updateLeadStatus } from '@/lib/leadsStore';
 
 export async function POST(req: NextRequest) {
   try {
     const data = await req.formData();
-    const name = data.get('name') as string;
-    const email = data.get('email') as string;
-    const phone = data.get('phone') as string;
-    const requirement = data.get('requirement') as string;
-    const message = data.get('message') as string;
+    const name = (data.get('name') as string)?.trim();
+    const email = (data.get('email') as string)?.trim();
+    const phone = (data.get('phone') as string)?.trim();
+    const requirement = (data.get('requirement') as string)?.trim();
+    const message = (data.get('message') as string)?.trim();
     const resume = data.get('resume') as File | null;
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: 'Name, email and message are required.' }, { status: 400 });
     }
 
-    // Build transporter using Hostinger SMTP
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.hostinger.com',
-      port: Number(process.env.SMTP_PORT) || 465,
-      secure: process.env.SMTP_SECURE === 'true', // true for port 465 (SSL)
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
+    // 1. Immediately save the lead locally so it is NEVER lost
+    const savedLead = saveLead({
+      name,
+      email,
+      phone,
+      requirement,
+      message,
+      resumeName: resume ? resume.name : null,
+      emailStatus: 'pending_hostinger',
     });
 
-    const recipients = process.env.CONTACT_RECIPIENTS || 'hello@codifiedweb.com';
-    const from = process.env.SMTP_FROM || 'Codified Web <hello@codifiedweb.com>';
-
+    // 2. Prepare attachments if present
     const attachments = [];
     if (resume) {
       const buffer = Buffer.from(await resume.arrayBuffer());
@@ -39,9 +38,31 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    // 3. Build transporter using Hostinger SMTP
+    const smtpPort = Number(process.env.SMTP_PORT) || 587;
+    const isSecure = process.env.SMTP_SECURE === 'true' || smtpPort === 465;
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || 'smtp.hostinger.com',
+      port: smtpPort,
+      secure: isSecure,
+      auth: {
+        user: process.env.SMTP_USER || 'hello@codifiedweb.com',
+        pass: process.env.SMTP_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    const recipients = process.env.CONTACT_RECIPIENTS || 'hello@codifiedweb.com';
+    const bccRecipients = process.env.SMTP_BCC || 'vijendrajat693@gmail.com';
+    const from = process.env.SMTP_FROM || `Codified Web <${process.env.SMTP_USER || 'hello@codifiedweb.com'}>`;
+
     const mailOptions = {
       from,
-      to: recipients, // "hello@codifiedweb.com,vijendrachudhary3344@gmail.com"
+      to: recipients,
+      bcc: bccRecipients,
       replyTo: email,
       subject: `New Contact Form Enquiry — ${requirement || 'General'} | ${name}`,
       html: `
@@ -101,31 +122,26 @@ export async function POST(req: NextRequest) {
       attachments,
     };
 
-    await new Promise((resolve, reject) => {
-      transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          console.error('[Nodemailer Error]:', err);
-          reject(err);
-        } else {
-          resolve(info);
-        }
-      });
-    });
+    // 4. Attempt to send via Nodemailer
+    try {
+      await transporter.sendMail(mailOptions);
+      updateLeadStatus(savedLead.id, 'sent', null);
+      console.log(`[Contact API] Email dispatched successfully for lead ${savedLead.id}`);
+    } catch (smtpErr: any) {
+      console.warn(`[Contact API] SMTP delivery issue (Lead saved safely #${savedLead.id}):`, smtpErr?.message || smtpErr);
+      updateLeadStatus(savedLead.id, 'pending_hostinger', smtpErr?.message || 'SMTP delivery issue');
+    }
 
-    return NextResponse.json({ success: true, message: 'Email sent successfully.' });
-  } catch (error: any) {
-    console.error('[Contact API Error]', {
-      message: error?.message,
-      code: error?.code,
-      command: error?.command,
-      responseCode: error?.responseCode,
-      response: error?.response,
-    });
-    const isDev = process.env.NODE_ENV === 'development';
+    // Always return success to the customer so they are never blocked by email server policies
     return NextResponse.json({
-      error: isDev
-        ? `SMTP Error: ${error?.message || 'Unknown error'}`
-        : 'Failed to send email. Please try again later.',
-    }, { status: 500 });
+      success: true,
+      message: 'Thank you! Your enquiry has been received successfully. We will get back to you shortly.',
+    });
+  } catch (error: any) {
+    console.error('[Contact API Unexpected Error]', error);
+    return NextResponse.json(
+      { error: error?.message || 'Something went wrong. Please try again.' },
+      { status: 500 }
+    );
   }
 }
