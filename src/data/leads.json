@@ -1,0 +1,36 @@
+[
+  {
+    "name": "vijendra jat",
+    "email": "vijendrajat693@gmail.com",
+    "phone": "23423423",
+    "requirement": "AI / LLM Integration",
+    "message": "324",
+    "resumeName": "Invoices - Hotel Grand Eagle.pdf-Trilok.pdf",
+    "emailStatus": "sent",
+    "id": "lead_1792408440791_od17m",
+    "createdAt": "2026-10-19T11:14:00.791Z",
+    "smtpError": null
+  },
+  {
+    "name": "vijendrta",
+    "email": "jat@gmail.com",
+    "phone": "324234",
+    "requirement": "UI/UX Design Systems",
+    "message": "32423",
+    "resumeName": "Invoices - Hotel Grand Eagle.pdf-Trilok.pdf",
+    "emailStatus": "pending_hostinger",
+    "id": "lead_1792407794272_8anso",
+    "createdAt": "2026-10-19T11:03:14.274Z",
+    "smtpError": "Message failed: 554 5.7.1 Outbound sending is disabled for this account"
+  },
+  {
+    "id": "lead_test",
+    "createdAt": "2026-10-19T11:01:54.430Z",
+    "name": "Test Client",
+    "email": "client@example.com",
+    "phone": "+91 9999999999",
+    "requirement": "AI Solutions",
+    "message": "This is a test message to verify leads storage",
+    "emailStatus": "pending_hostinger"
+  }
+]

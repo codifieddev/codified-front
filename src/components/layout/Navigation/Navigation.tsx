@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { initCinematic } from '@/lib/cinematic';
 
-import { Brain, Bot, Network, Sparkles, PenTool, Code, FileText, LayoutTemplate, Smartphone, Apple, Cpu, TrendingUp, DollarSign, PieChart, Activity } from 'lucide-react';
+import { Brain, Bot, Network, Sparkles, PenTool, Code, FileText, LayoutTemplate, Smartphone, Apple, Cpu, TrendingUp, DollarSign, PieChart, Activity, LogOut } from 'lucide-react';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { logoutUser } from '@/redux/slices/auth/authSlice';
+import { setEditMode } from '@/redux/slices/pages/pagesSlice';
 
 const getServiceIcon = (code: string) => {
   const props = { size: 24, strokeWidth: 1.5 };
@@ -27,6 +30,8 @@ const getServiceIcon = (code: string) => {
 };
 
 export default function Navigation() {
+  const dispatch = useAppDispatch();
+  const { isAuthenticated, authUser } = useAppSelector((state) => state.auth);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMega, setActiveMega] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState('AI Services');
@@ -161,6 +166,19 @@ export default function Navigation() {
         </div>
 
         <div className="nav-right">
+          {isAuthenticated && (
+            <button
+              onClick={() => {
+                dispatch(setEditMode(false));
+                dispatch(logoutUser());
+              }}
+              className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-rose-500/30 bg-rose-500/10 text-xs font-mono text-rose-300 hover:bg-rose-500/20 hover:text-white transition-all cursor-pointer"
+              title={`Logged in as ${authUser?.email || 'Admin'} — Click to Logout`}
+            >
+              <LogOut size={13} />
+              <span>Logout</span>
+            </button>
+          )}
           <Link className="cta" href="/contact">Free Consultation</Link>
 
           {/* Hamburger — mobile only */}
@@ -336,6 +354,22 @@ export default function Navigation() {
 
         <Link href="/technologies" onClick={closeMenu}>Technologies</Link>
         <Link href="/contact" onClick={closeMenu}>Contact</Link>
+        {isAuthenticated && (
+          <button
+            onClick={() => {
+              closeMenu();
+              dispatch(setEditMode(false));
+              dispatch(logoutUser());
+            }}
+            className="w-full text-left flex items-center justify-between px-[22px] py-4 text-sm font-mono text-rose-400 border-b border-white/10 hover:bg-rose-500/10 transition-colors cursor-pointer"
+          >
+            <span className="flex items-center gap-2">
+              <LogOut size={16} />
+              <span>Admin Logout</span>
+            </span>
+            <span className="text-xs text-white/40">{authUser?.name || authUser?.email || 'Operator'}</span>
+          </button>
+        )}
         <Link href="/contact" className="drawer-cta" onClick={closeMenu}>Free Consultation →</Link>
       </div>
 

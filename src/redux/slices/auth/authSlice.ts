@@ -39,6 +39,18 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const logoutUser = createAsyncThunk(
+  'auth/logoutUser',
+  async (_, { dispatch }) => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch (err) {
+      console.warn('Logout endpoint failed:', err);
+    }
+    dispatch(logout());
+  }
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -57,6 +69,7 @@ const authSlice = createSlice({
       if (typeof window !== 'undefined') {
         localStorage.removeItem('access_token');
         localStorage.removeItem('shared_data');
+        localStorage.removeItem('kalpzero-enterprise-auth');
       }
     },
     clearError: (state) => {

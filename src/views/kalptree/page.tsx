@@ -4,7 +4,7 @@ import React, { useState, useEffect, FormEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { loginUser, logout, clearError } from '@/redux/slices/auth/authSlice';
+import { loginUser, logout, logoutUser, clearError } from '@/redux/slices/auth/authSlice';
 import Navigation from '@/components/layout/Navigation/Navigation';
 import Footer from '@/components/layout/Footer/Footer';
 import CinematicInit from '@/components/providers/CinematicInit/CinematicInit';
@@ -54,7 +54,7 @@ export default function KalpTreePage({ locale = 'en' }: { locale?: string }) {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logoutUser());
   };
 
   return (
